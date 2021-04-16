@@ -49,27 +49,27 @@
 <!--Home-->
                      <li class="nav-item active">
                         <div class="tm-nav-link-highlight"></div>
-                        <a class="nav-link" href="index.html">Home</a>
+                        <a class="nav-link" href="../Index/index.html">Home</a>
                     </li>
 <!--Acerca de-->              
                     <li class="nav-item">
                       <div class="tm-nav-link-highlight"></div>
-                      <a class="nav-link" href="acercaDe.html">Acerca de</a>
+                      <a class="nav-link" href="../Index/acercaDe.html">Acerca de</a>
                     </li>
 <!--Prevencion-->              
                     <li class="nav-item">
                       <div class="tm-nav-link-highlight"></div>
-                      <a class="nav-link" href="covid.html">Covid</a>
+                      <a class="nav-link" href="../Index/covid.html">Covid</a>
                     </li>
 <!--Contactenos-->
                     <li class="nav-item active">
                         <div class="tm-nav-link-highlight"></div>
-                        <a class="nav-link" href="#">Contactenos <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" href="../Index/contacto.html">Contactenos</a>
                      </li>
 <!--Login-->              
                     <li class="nav-item">
                       <div class="tm-nav-link-highlight"></div>
-                     <a class="nav-link" href="login.html">Login</a>
+                      <a class="nav-link" href="#">Login <span class="sr-only">(current)</span></a>
                    </li>
                   </ul>
                 </div>
@@ -80,6 +80,7 @@
 
 <!-- Login -->
         <section class="row" id="tmServices">
+          
           <div class="col-12">
             <div class="parallax-window tm-services-parallax-header tm-testimonials-parallax-header"
                  data-parallax="scroll"
@@ -97,11 +98,11 @@
 								<div class="sign-in-htm">
 									<div class="group">
 										<label for="user" class="label">Usuario</label>
-										<input id="user" type="text" class="input">
+										<input id="loginUser" type="text" class="input">
 									</div>
 									<div class="group">
 										<label for="pass" class="label">Contraseña</label>
-										<input id="pass" type="password" class="input" data-type="password">
+										<input id="loginPass" type="password" class="input" data-type="password">
 									</div>
 <!-- boton de mantener sesion
 
@@ -110,10 +111,14 @@
 										<label for="check"><span class="icon"></span> Keep me Signed in</label>
 									</div>
 -->
+
+<!-- boton inicio sesion-->
                   <div class="group">
-                    <input type="submit" class="button" value="Ingresar">
+                    <button type="submit" onclick="InicioSesion()" class="button">Ingresarrrrrrr</button>
                   </div>
+
                   <div class="hr"></div>
+                  <div class="foot-lnk">	</div>
 
 <!-- boton olvido su contraseña
 									<div class="foot-lnk">
@@ -127,46 +132,47 @@
 
 									<div class="group">
 										<label for="nombre" class="label">Nombre</label>
-										<input id="nombre" type="text"    class="input">
+										<input id="nombreRegistro" type="text"    class="input">
 									</div>
 
 									<div class="group">
 										<label for="apellido" class="label">Apellido</label>
-										<input id="apellido" type="text" class="input">
+										<input id="apellidoRegistro" type="text" class="input">
 									</div>
 
 									<div class="group">
 										<label for="date" class="label">Fecha de Nacimiento</label>
-										<input id="date" type="date" class="input" data-type="date">
+										<input id="fechaRegistro" type="date" class="input" data-type="date">
 									</div>
 
 									<div class="group">
 										<label for="sex" class="label">Sexo</label>
-										<input id="sex" type="text" class="input">
+										<input id="sexRegistro" type="text" class="input">
 									</div>
 
                   <div class="group">
 										<label for="user" class="label">Usuario</label>
-										<input id="user" type="text" class="input">
+										<input id="userRegistro" type="text" class="input">
 									</div>
 
                   <div class="group">
 										<label for="pass" class="label">Contraseña(8 caracteres minimo)</label>
-										<input id="pass" type="password" class="input" data-type="password">
+										<input id="passRegistro" type="password" class="input" data-type="password">
 									</div>
 
                   <div class="group">
 										<label for="tel" class="label">Telefono</label>
-										<input id="tel" type="text" class="input" >
+										<input id="telRegistro" type="text" class="input" >
 									</div>
 <!--Boton de registro-->
 									<div class="group">
-										<input type="submit" class="button" value="Registrarse">
+									<!--	<input type="submit" class="button" value="Registrarse"> -->
+                    <button type="submit" onclick="CrearUsuario()" class="button">Registrarse</button>
 									</div>
 									<div class="hr"></div>
 
 									<div class="foot-lnk">
-										<label for="tab-1">Already Member?</a>
+								
 									</div>
 								</div>
 							</div>
@@ -193,6 +199,8 @@
     </div>
       <!-- .container-fluid -->
     </div>
+
+    <script src="funciones.js"></script>
 
     <script src="js/jquery.min.js"></script>
     <script src="js/parallax.min.js"></script>
