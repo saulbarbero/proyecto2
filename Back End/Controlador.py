@@ -8,28 +8,33 @@ class Controlador:
         self.paciente.append(Paciente('nom','apellido','fecha','M','usuarioss','pass','tel'))
 
 
-#Create
+    #Create
     def crearPaciente(self,nombre,apellido,fecha,sexo,user,password,telefono):
         self.paciente.append(Paciente(nombre,apellido,fecha,sexo,user,password,telefono))
 
       
-#Read
+    #Read
     def obtenerPaciente(self):
         return json.dumps([ob.__dict__ for ob in self.paciente])
 
-#Update
+    #Update
     def actualizarPaciente(self,user,nombreNuevo,apellidoNuevo,fechaNuevo,sexoNuevo,userNuevo,passwordNuevo,telefonoNuevo):
         for x in self.paciente:
             if x.user==user:
-                self.libros[self.paciente.index(x)]=Paciente(nombreNuevo,apellidoNuevo,fechaNuevo,sexoNuevo,userNuevo,passwordNuevo,telefonoNuevo)
+                self.paciente[self.paciente.index(x)]=Paciente(nombreNuevo,apellidoNuevo,fechaNuevo,sexoNuevo,userNuevo,passwordNuevo,telefonoNuevo)
                 return True
         return False
-#Delete
+    #Delete
     def eliminarPaciente(self,user):
         for x in self.paciente:
-            if x.user==user
+            if x.user==user:
                 self.paciente.remove(x)
                 return True
         return False
 
-    
+    #iniciar sesion
+    def iniciarSesion(self,user,password):
+        for x in self.paciente:
+            if x.password==password and x.user==user:
+                return json.dumps(x.__dict__)
+        return '{"nombre":"false"}'

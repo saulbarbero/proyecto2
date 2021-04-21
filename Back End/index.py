@@ -1,6 +1,7 @@
 #importaciones de flask
 from flask import Flask, request,jsonify
 from flask_cors import CORS 
+from Controlador import Controlador
 
 #crear la aplicacion
 app = Flask(__name__)
@@ -8,7 +9,7 @@ app.config["DEBUG"] = True
 
 CORS(app)
 
-controlador = Controlador()
+gestor = Controlador()
 
 
 #EndPoints
@@ -19,27 +20,32 @@ def home():
 
 @app.route('/obtenerPacientes')
 def obtenerPaciente():
-    return controlador.obtenerPaciente()
+    return gestor.obtenerPaciente()
 
 @app.route('/pacientes',methods=['POST'])
 def crearPaciente():
     dato = request.json
-    controlador.crearPaciente(dato['nombre'],dato['apellido'],dato['fecha'],dato['sexo'],dato['user'],dato['password'],dato['telefono'])
+    gestor.crearPaciente(dato['nombre'],dato['apellido'],dato['fecha'],dato['sexo'],dato['user'],dato['password'],dato['telefono'])
     return '{"Estado":"Paciente Creado"}'
 
 @app.route('/pacientes/<user>',methods=['DELETE'])
 def eliminarPaciente(user):
-    if(controlador.eliminarPaciente(user)):
+    if(gestor.eliminarPaciente(user)):
         return '{"data":"Eliminada"}'
     return '{"data":"Error"}'
 
-@app.route('/libros/<user>',methods=['PUT'])
+@app.route('/pacientes/<user>',methods=['PUT'])
 def actualizarPaciente(user):
     dato = request.json
 
-    if controlador.actualizarPaciente(user,dato['nombre'],dato['apellido'],dato['fecha'],dato['sexo'],dato['user'],dato['password'],dato['telefono']):
+    if gestor.actualizarPaciente(user,dato['nombre'],dato['apellido'],dato['fecha'],dato['sexo'],dato['user'],dato['password'],dato['telefono']):
         return '{"data":"Actualizada"}'
     return '{"data":"Error"}'
+
+@app.route('/login/<user>/<password>')
+def inicioP(user,password):
+
+    return gestor.iniciarSesion(user,password)
 
 
 #Iniciar el server
