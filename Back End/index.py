@@ -25,7 +25,7 @@ def obtenerPaciente():
 @app.route('/pacientes',methods=['POST'])
 def crearPaciente():
     dato = request.json
-    gestor.crearPaciente(dato['nombre'],dato['apellido'],dato['fecha'],dato['sexo'],dato['user'],dato['password'],dato['telefono'])
+    gestor.crearPaciente(dato['nombre'],dato['apellido'],dato['fecha'],dato['sexo'],dato['user'],dato['password'],dato['especialidad'],dato['telefono'],dato['tipo'])
     return '{"Estado":"Paciente Creado"}'
 
 @app.route('/pacientes/<user>',methods=['DELETE'])
@@ -38,15 +38,20 @@ def eliminarPaciente(user):
 def actualizarPaciente(user):
     dato = request.json
 
-    if gestor.actualizarPaciente(user,dato['nombre'],dato['apellido'],dato['fecha'],dato['sexo'],dato['user'],dato['password'],dato['telefono']):
+    if gestor.actualizarPaciente(user,dato['nombre'],dato['apellido'],dato['fecha'],dato['sexo'],dato['especialidad'],dato['telefono'],dato['tipo']):
         return '{"data":"Actualizada"}'
     return '{"data":"Error"}'
 
 @app.route('/login/<user>/<password>')
-def inicioP(user,password):
+def inicio(user,password):
+    return gestor.inicioSesion(user,password)
 
-    return gestor.iniciarSesion(user,password)
 
+@app.route('/registroP',methods=['POST'])
+def registroP():
+    dato=request.json
+    gestor.registrarPaciente(dato['nombre'],dato['apellido'],dato['fecha'],dato['sexo'],dato['user'],dato['password'],dato['especialidad'],dato['telefono'],dato['tipo'])
+    return '{"data":"Creado"}'
 
 #Iniciar el server
 if __name__ == "__main__":
