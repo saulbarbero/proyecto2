@@ -15,7 +15,67 @@ function CrearUsuario(){
     var sex = document.getElementById("sexRegistro");
     var user = document.getElementById("userRegistro");
     var pass = document.getElementById("passRegistro");
+    var especialidad = "Ninguna";
     var tel = document.getElementById("telRegistro");
+    var tipo = "Paciente";
+
+    if(nombre.value=='' || apellido.value=='' || fecha.value=='' || sex.value=='' || user.value=='' || pass.value==''){
+        alert('Debe llenar todos los campos con *')
+        return
+    }else if (pass.value.length < 8){
+        alert('La contraseña debe tener 8 caracteres minimo')
+        return
+    }
+
+    fetch(`http://localhost:5000/registroP`,
+    {
+        method:`POST`,
+        headers,
+        body:   `{
+            "nombre":"${nombreRegistro.value}",
+            "apellido":"${apellidoRegistro.value}",
+            "fecha":"${fechaRegistro.value}",
+            "sexo":"${sexRegistro.value}",
+            "user":"${userRegistro.value}",
+            "password":"${passRegistro.value}",
+            "especialidad":"Ninguna",
+            "telefono":"${telRegistro.value}",
+            "tipo":"Paciente"
+                 }`
+    })
+    .then(response => response.json())
+    .then(
+        result => {
+            console.log(`Success:`, result);
+            nombreRegistro.value=``
+            apellidoRegistro.value=``
+            fechaRegistro.value=``
+            sexRegistro.value=``
+            userRegistro.value=``
+            passRegistro.value=``
+            especialidad=`Ninguna`
+
+            telRegistro.value=``
+            tipo=`Paciente`
+            alert(`Usuario Paciente Creado`)
+        }
+    )
+    .catch(
+        error => {
+            console.error(`Error:`, error);
+            nombreRegistro.value=``
+            apellidoRegistro.value=``
+            fechaRegistro.value=``
+            sexRegistro.value=``
+            userRegistro.value=``
+            especialidad=`Ninguna`
+
+            telRegistro.value=``
+            tipo=`Paciente`
+            alert(`Error Creando Usuario Paciente`)
+        }
+        
+    )
     
 }
 
@@ -28,17 +88,30 @@ function InicioSesion(){
     fetch(`http://localhost:5000/login/${user.value}/${pass.value}`)
     .then(response => response.json())
     .then(data => {
-        console.log(data.user)
-        if(data.user=='false'){
+        alert(`antes de los if`)
+
+        if(data.tipo =="Doctor"){
+            alert(`Bienvenido ${data.user}`)
+            window.location.href='../Administrador/administrador.html'
+        }else if(data.tipo == "Paciente"){
+            alert(`Bienvenido ${data.user}`)
+            window.location.href='../Paciente/moduloPaciente.html'
+        }else if(data.tipo == "Enfermera"){
+            alert(`Bienvenido ${data.user}`)
+            window.location.href='../Administrador/administrador.html'
+        }else if(data.tipo == "Administrador"){
+            alert(`Bienvenido ${data.user}`)
+            window.location.href='../Administrador/administrador.html'
+        }else{
             alert(`Credenciales erroneas`)
             user.value='';
             pass.value='';
-
-        }else{
-            alert(`Bienvenido ${data.user}`)
-            window.location.href='../Administrador/administrador.html'
         }
+        
+        console.log(data.user)  
     })
+        
+    
 
 
 }

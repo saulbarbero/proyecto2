@@ -7,7 +7,7 @@
 }
 
 body{
-	background: #D4D4D4;
+	/*background: #D4D4D4;*/
 	font-family: 'Open sans';
 }
 
@@ -48,7 +48,7 @@ ul.tabs li a .tab-text{
 
 .secciones{
 	width: 100%;
-	background: #fff;
+	background: rgba(52, 131, 235, 0.685);
 }
 
 .secciones article{
