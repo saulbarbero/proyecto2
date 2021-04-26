@@ -18,9 +18,18 @@ gestor = Controlador()
 def home():
     return 'SERVER IS WORKING'
 
+#Obtener
 @app.route('/obtenerPacientes')
 def obtenerPaciente():
     return gestor.obtenerPaciente()
+
+@app.route('/obtenerMedicamentos')
+def obtenerMedicamento():
+    return gestor.obtenerMedicamento()
+
+
+
+#POST Crear
 
 @app.route('/pacientes',methods=['POST'])
 def crearPaciente():
@@ -28,13 +37,31 @@ def crearPaciente():
     gestor.crearPaciente(dato['nombre'],dato['apellido'],dato['fecha'],dato['sexo'],dato['user'],dato['password'],dato['especialidad'],dato['telefono'],dato['tipo'])
     return '{"Estado":"Paciente Creado"}'
 
+@app.route('/medicamentos',methods=['POST'])
+def crearMedicamento():
+    dato = request.json
+    gestor.crearMedicamento(dato['nombre'],dato['precio'],dato['descripcion'],dato['cantidad'])
+    return '{"Estado":"Medicamento Creado"}'
+
+
+#DELETE 
+
 @app.route('/pacientes/<user>',methods=['DELETE'])
 def eliminarPaciente(user):
     if(gestor.eliminarPaciente(user)):
         return '{"data":"Eliminada"}'
     return '{"data":"Error"}'
 
-@app.route('/pacientes/<user>',methods=['PUT'])
+@app.route('/medicamentos/<nombre>',methods=['DELETE'])
+def eliminarMedicamento(nombre):
+    if(gestor.eliminarMedicamento(nombre)):
+        return '{"data":"Eliminada"}'
+    return '{"data":"Error"}'
+
+
+
+#PUT Actualizar
+@app.route('/pacientes/<user>',methods=['PUT']) 
 def actualizarPaciente(user):
     dato = request.json
 
@@ -42,10 +69,25 @@ def actualizarPaciente(user):
         return '{"data":"Actualizada"}'
     return '{"data":"Error"}'
 
+@app.route('/medicamentos/<nombre>',methods=['PUT']) 
+def actualizarMedicamento(nombre):
+    dato = request.json
+
+    if gestor.actualizarMedicamento(nombre,dato['nombre'],dato['precio'],dato['descripcion'],dato['cantidad']):
+        return '{"data":"Actualizada"}'
+    return '{"data":"Error"}'
+
+
+
+#Login
 @app.route('/login/<user>/<password>')
 def inicio(user,password):
     return gestor.inicioSesion(user,password)
 
+
+
+
+#POST Registro
 
 @app.route('/registroP',methods=['POST'])
 def registroP():
