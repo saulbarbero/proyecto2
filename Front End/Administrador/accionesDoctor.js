@@ -9,7 +9,7 @@ headers.append('GET', 'POST', 'OPTIONS','PUT','DELETE');
 
 
 
-function eliminarPaciente(user){
+function eliminarDoctor(user){
 
   console.log(user)
     alert(user)
@@ -19,14 +19,14 @@ function eliminarPaciente(user){
   .then(res => res.text())
   .then(res=> {
       alert(res)
-      actualizarPacientesTabla()
+      actualizarDoctorTabla()
   })
   
 }
 
 
 
-//mostrar pacientes por medio de una tabala
+//mostrar doctores por medio de una tabala
 
 let text2=""
 text2 = `<table class="table" style="margin=10px">
@@ -35,7 +35,7 @@ text2 = `<table class="table" style="margin=10px">
 <th scope="col">#</th>
 <th scope="col">Nombre</th>
 <th scope="col">Apellido</th>
-<th scope="col">Contraseña</th>
+<th scope="col">Especialidad</th>
 <th scope="col">Usuario</th>
 </tr>
 </thead>
@@ -50,7 +50,7 @@ fetch('http://localhost:5000/obtenerPacientes')
  
 
     for(i=0;i<data.length;i++){
-      if(data[i].tipo=="Paciente"){
+      if(data[i].tipo=="Doctor"){
         
   
         text2+= `
@@ -58,9 +58,9 @@ fetch('http://localhost:5000/obtenerPacientes')
         <th scope="row">${i+1}</th>
         <td>${data[i].nombre}</td>
         <td>${data[i].apellido}</td>
-        <td>${data[i].password}</td>
+        <td>${data[i].especialidad}</td>
         <td>${data[i].user}</td>
-        <td> <button href="#" class="btn btn-outline-danger btn-sm"  onclick="eliminarPaciente('${data[i].user}')">Eliminar</button> </td>
+        <td> <button href="#" class="btn btn-outline-danger btn-sm"  onclick="eliminarDoctor('${data[i].user}')">Eliminar</button> </td>
         </tr>
         `
       }
@@ -71,7 +71,7 @@ fetch('http://localhost:5000/obtenerPacientes')
 
   text2+=`</tbody>
           </table>`
-  document.getElementById("tablausers").innerHTML = text2;
+  document.getElementById("tabladoctor").innerHTML = text2;
 });
 
 
@@ -103,7 +103,7 @@ fetch('http://localhost:5000/obtenerPacientes')
 
 
 
-function actualizarPacientesTabla(){
+function actualizarDoctorTabla(){
 let text8=""
 text8 = `<table class="table" style="margin=10px">
 <thead>
@@ -126,7 +126,7 @@ fetch('http://localhost:5000/obtenerPacientes')
  
 
     for(i=0;i<data.length;i++){
-      if(data[i].tipo=="Paciente"){
+      if(data[i].tipo=="Doctor"){
         
   
         text8+= `
@@ -136,7 +136,7 @@ fetch('http://localhost:5000/obtenerPacientes')
         <td>${data[i].apellido}</td>
         <td>${data[i].password}</td>
         <td>${data[i].user}</td>
-        <td> <button href="#" class="btn btn-outline-danger btn-sm"  onclick="eliminarPaciente('${data[i].user}')">Eliminar</button> </td>
+        <td> <button href="#" class="btn btn-outline-danger btn-sm"  onclick="eliminarDoctor('${data[i].user}')">Eliminar</button> </td>
         </tr>
         `
       }
@@ -147,7 +147,7 @@ fetch('http://localhost:5000/obtenerPacientes')
 
   text8+=`</tbody>
           </table>`
-  document.getElementById("tablausers").innerHTML = text8;
+  document.getElementById("tabladoctor").innerHTML = text8;
 });
 
 }
@@ -182,5 +182,12 @@ fetch('http://localhost:5000/obtenerPacientes')
 
 
     }
+  
+  
+
+
+
+
+     
   
   

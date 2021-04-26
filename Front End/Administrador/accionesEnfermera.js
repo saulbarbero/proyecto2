@@ -9,7 +9,7 @@ headers.append('GET', 'POST', 'OPTIONS','PUT','DELETE');
 
 
 
-function eliminarPaciente(user){
+function eliminarEnfermera(user){
 
   console.log(user)
     alert(user)
@@ -19,14 +19,14 @@ function eliminarPaciente(user){
   .then(res => res.text())
   .then(res=> {
       alert(res)
-      actualizarPacientesTabla()
+      actualizarEnfermeraTabla()
   })
   
 }
 
 
 
-//mostrar pacientes por medio de una tabala
+//mostrar enfermera por medio de una tabala
 
 let text2=""
 text2 = `<table class="table" style="margin=10px">
@@ -50,7 +50,7 @@ fetch('http://localhost:5000/obtenerPacientes')
  
 
     for(i=0;i<data.length;i++){
-      if(data[i].tipo=="Paciente"){
+      if(data[i].tipo=="Enfermera"){
         
   
         text2+= `
@@ -60,7 +60,7 @@ fetch('http://localhost:5000/obtenerPacientes')
         <td>${data[i].apellido}</td>
         <td>${data[i].password}</td>
         <td>${data[i].user}</td>
-        <td> <button href="#" class="btn btn-outline-danger btn-sm"  onclick="eliminarPaciente('${data[i].user}')">Eliminar</button> </td>
+        <td> <button href="#" class="btn btn-outline-danger btn-sm"  onclick="eliminarEnfermera('${data[i].user}')">Eliminar</button> </td>
         </tr>
         `
       }
@@ -71,7 +71,7 @@ fetch('http://localhost:5000/obtenerPacientes')
 
   text2+=`</tbody>
           </table>`
-  document.getElementById("tablausers").innerHTML = text2;
+  document.getElementById("tablaenfermera").innerHTML = text2;
 });
 
 
@@ -103,7 +103,7 @@ fetch('http://localhost:5000/obtenerPacientes')
 
 
 
-function actualizarPacientesTabla(){
+function actualizarEnfermeraTabla(){
 let text8=""
 text8 = `<table class="table" style="margin=10px">
 <thead>
@@ -126,7 +126,7 @@ fetch('http://localhost:5000/obtenerPacientes')
  
 
     for(i=0;i<data.length;i++){
-      if(data[i].tipo=="Paciente"){
+      if(data[i].tipo=="Enfermera"){
         
   
         text8+= `
@@ -136,7 +136,7 @@ fetch('http://localhost:5000/obtenerPacientes')
         <td>${data[i].apellido}</td>
         <td>${data[i].password}</td>
         <td>${data[i].user}</td>
-        <td> <button href="#" class="btn btn-outline-danger btn-sm"  onclick="eliminarPaciente('${data[i].user}')">Eliminar</button> </td>
+        <td> <button href="#" class="btn btn-outline-danger btn-sm"  onclick="eliminarEnfermera('${data[i].user}')">Eliminar</button> </td>
         </tr>
         `
       }
@@ -147,7 +147,7 @@ fetch('http://localhost:5000/obtenerPacientes')
 
   text8+=`</tbody>
           </table>`
-  document.getElementById("tablausers").innerHTML = text8;
+  document.getElementById("tablaenfermera").innerHTML = text8;
 });
 
 }

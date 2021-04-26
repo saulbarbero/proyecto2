@@ -88,7 +88,7 @@ function InicioSesion(){
     fetch(`http://localhost:5000/login/${user.value}/${pass.value}`)
     .then(response => response.json())
     .then(data => {
-        alert(`antes de los if`)
+        
 
         if(data.tipo =="Doctor"){
             alert(`Bienvenido ${data.user}`)
