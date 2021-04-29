@@ -8,23 +8,40 @@ headers.append('Access-Control-Allow-Credentials', 'true');
 headers.append('GET', 'POST', 'OPTIONS','PUT','DELETE');
 
 
+function cargaDoctor(){
+  actualizarDoctorTabla()
+  let file = document.getElementById("cargadoctor").files[0];
+  if (file) {
+      let reader = new FileReader();
+      reader.readAsText(file, "UTF-8");
+      reader.onload = function (evt) {
+          let cuerpo = {
+              data:evt.target.result
+          }
+          actualizarDoctorTabla()
+          console.log(JSON.stringify(cuerpo))
+          fetch('http://localhost:5000/cargaDoctor', {
+          method: 'POST',
+          headers,
+          body: JSON.stringify(cuerpo),
+          })
+          .then(response => response.json())
+          .then(result => {
+              actualizarDoctorTabla()
+              console.log('Success:', result);
+              actualizarDoctorTabla()
+              
+          })
+          .catch(error => {
+              console.error('Error:', error);
+          });
 
-function eliminarDoctor(user){
-
-  console.log(user)
-    alert(user)
-  fetch('http://localhost:5000/pacientes/'+user,{
-      method:'DELETE'
-  })
-  .then(res => res.text())
-  .then(res=> {
-      alert(res)
-      actualizarDoctorTabla()
-  })
-  
+      }
+      reader.onerror = function (evt) {
+          
+      }
+  }
 }
-
-
 
 //mostrar doctores por medio de una tabala
 
@@ -35,8 +52,12 @@ text2 = `<table class="table" style="margin=10px">
 <th scope="col">#</th>
 <th scope="col">Nombre</th>
 <th scope="col">Apellido</th>
-<th scope="col">Especialidad</th>
+<th scope="col">Fecha</th>
+<th scope="col">Sexo</th>
+<th scope="col">Contraseña</th>
 <th scope="col">Usuario</th>
+<th scope="col">Especialidad</th>
+<th scope="col">Telefono</th>
 </tr>
 </thead>
 <tbody>`
@@ -58,8 +79,12 @@ fetch('http://localhost:5000/obtenerPacientes')
         <th scope="row">${i+1}</th>
         <td>${data[i].nombre}</td>
         <td>${data[i].apellido}</td>
-        <td>${data[i].especialidad}</td>
+        <td>${data[i].fecha}</td>
+        <td>${data[i].sexo}</td>
+        <td>${data[i].password}</td>
         <td>${data[i].user}</td>
+        <td>${data[i].especialidad}</td>
+        <td>${data[i].telefono}</td>
         <td> <button href="#" class="btn btn-outline-danger btn-sm"  onclick="eliminarDoctor('${data[i].user}')">Eliminar</button> </td>
         </tr>
         `
@@ -71,123 +96,153 @@ fetch('http://localhost:5000/obtenerPacientes')
 
   text2+=`</tbody>
           </table>`
-  document.getElementById("tabladoctor").innerHTML = text2;
+  document.getElementById("cargadoctor").innerHTML = text2;
 });
-
-
-//aqui agrego las cartas de los pacientes pero mejor del medicamento
-    document.getElementById("cardsc").innerHTML = '';
-    let text="";
-    fetch('http://localhost:5000/obtenerPacientes')
-    .then(response => response.json())
-    .then(data =>{
-        var i;
-        for(i=0;i<data.length;i++){
-            text+= `<br>
-                    <div class="col-sm-3 col-md-3 col-lg-3""  style="margin-top: 25px;float: left;">
-                    <div class="card bg-light" style="width: auto;">
-                    
-                    <div class="card-body">
-                        <h4 class="card-title">${data[i].nombre}</h4>
-                        <h5 class="card-title">${data[i].apellido}</h5>
-                        <p class="card-text">${data[i].descripcion}</p>
-                        <button href="#" class="btn btn btn-danger" onclick="eliminar('${data[i].nombre}','${data[i].apellido}')">Eliminar</button>
-                    </div>
-                    </div>
-                    </div>
-                    <br>`
-            console.log(data[i].nombre,'prueba')
-        }
-        document.getElementById("cardsc").innerHTML = text;
-    });
-
-
 
 function actualizarDoctorTabla(){
-let text8=""
-text8 = `<table class="table" style="margin=10px">
-<thead>
-<tr>
-<th scope="col">#</th>
-<th scope="col">Nombre</th>
-<th scope="col">Apellido</th>
-<th scope="col">Contraseña</th>
-<th scope="col">Usuario</th>
-</tr>
-</thead>
-<tbody>`
-
-fetch('http://localhost:5000/obtenerPacientes')
-.then(response => response.json())
-.then(data =>{
-  var i;
+  let text1=""
+  text1 = `<table class="table" style="margin=10px">
+  <thead>
+  <tr>
+  <th scope="col">#</th>
+  <th scope="col">Nombre</th>
+  <th scope="col">Apellido</th>
+  <th scope="col">Fecha</th>
+  <th scope="col">Sexo</th>
+  <th scope="col">Contraseña</th>
+  <th scope="col">Usuario</th>
+  <th scope="col">Especialidad</th>
+  <th scope="col">Telefono</th>
+  </tr>
+  </thead>
+  <tbody>`
   
-
- 
-
-    for(i=0;i<data.length;i++){
-      if(data[i].tipo=="Doctor"){
-        
+  fetch('http://localhost:5000/obtenerPacientes')
+  .then(response => response.json())
+  .then(data =>{
+    var i;
+    
   
-        text8+= `
-        <tr>
-        <th scope="row">${i+1}</th>
-        <td>${data[i].nombre}</td>
-        <td>${data[i].apellido}</td>
-        <td>${data[i].password}</td>
-        <td>${data[i].user}</td>
-        <td> <button href="#" class="btn btn-outline-danger btn-sm"  onclick="eliminarDoctor('${data[i].user}')">Eliminar</button> </td>
-        </tr>
-        `
-      }
-      
-    }
-
+   
   
-
-  text8+=`</tbody>
-          </table>`
-  document.getElementById("tabladoctor").innerHTML = text8;
-});
-
-}
-      //aqui agrego las cartas de los pacientes por funcion
-    function actualizar(){
-
-
-    document.getElementById("cardsc").innerHTML = '';
-    let text="";
-    fetch('http://localhost:5000/obtenerPacientes')
-    .then(response => response.json())
-    .then(data =>{
-        var i;
-        for(i=0;i<data.length;i++){
-            text+= `<br>
-                    <div class="col-sm-3 col-md-3 col-lg-3""  style="margin-top: 25px;float: left;">
-                    <div class="card bg-light" style="width: auto;">
-                    
-                    <div class="card-body">
-                        <h4 class="card-title">${data[i].nombre}</h4>
-                        <h5 class="card-title">${data[i].apellido}</h5>
-                        <p class="card-text">${data[i].descripcion}</p>
-                        <button href="#" class="btn btn btn-danger" onclick="eliminar('${data[i].nombre}','${data[i].apellido}')">Eliminar</button>
-                    </div>
-                    </div>
-                    </div>
-                    <br>`
-            console.log(data[i].nombre,'prueba')
+      for(i=0;i<data.length;i++){
+        if(data[i].tipo=="Doctor"){
+          
+    
+          text1+= `
+          <tr>
+          <th scope="row">${i+1}</th>
+          <td>${data[i].nombre}</td>
+          <td>${data[i].apellido}</td>
+          <td>${data[i].fecha}</td>
+          <td>${data[i].sexo}</td>
+          <td>${data[i].password}</td>
+          <td>${data[i].user}</td>
+          <td>${data[i].especialidad}</td>
+          <td>${data[i].telefono}</td>
+          <td> <button href="#" class="btn btn-outline-danger btn-sm"  onclick="eliminarDoctor('${data[i].user}')">Eliminar</button> </td>
+          </tr>
+          `
         }
-        document.getElementById("cardsc").innerHTML = text;
+        
+      }
+  
+    
+  
+    text1+=`</tbody>
+            </table>`
+    document.getElementById("cargadoctor").innerHTML = text1;
+  });
+  
+}
+
+
+function eliminarDoctor(user){
+
+  console.log(user)
+    alert(user)
+  fetch('http://localhost:5000/pacientes/'+user,{
+      method:'DELETE'
+  }) 
+  .then(res => res.text())
+  .then(res=> {
+      alert(res)
+      actualizarDoctorTabla()
+  })
+  
+}
+
+function modificarDoctor(){
+  let userOld = document.getElementById("vUsuario");
+  let nombre = document.getElementById("nNombre");
+  let apellido = document.getElementById("nApellido");
+  let fecha = document.getElementById("nFecha");
+  let sex = document.getElementById("nSexo");
+  let user = document.getElementById("nUsuario");
+  let pass = document.getElementById("nPassword");
+  let especialidad = document.getElementById("nEspecialidad");
+  let tel = document.getElementById("nTel");
+  let tipo = "Doctor";
+
+
+    let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('Accept', 'application/json');
+      headers.append('Access-Control-Allow-Origin', 'http://localhost:5000');
+      headers.append('Access-Control-Allow-Credentials', 'true');
+      headers.append('GET', 'POST', 'OPTIONS','PUT','DELETE');
+      
+    let reque = `{
+            "user":"${vUsuario.value}",
+            "nombreNuevo":"${nNombre.value}",
+            "apellidoNuevo":"${nApellido.value}",
+            "fechaNuevo":"${nFecha.value}",
+            "sexoNuevo":"${nSexo.value}",
+            "userNuevo":"${nUsuario.value}",
+            "passwordNuevo":"${nPassword.value}",
+            "especialidadNuevo":"${nEspecialidad.value}",
+            "telefonoNuevo":"${nTel.value}",
+            "tipoNuevo":"Doctor"
+    }`
+
+    console.log(reque)
+    
+    fetch('http://localhost:5000/doctores/'+userOld.value, {
+      method: 'PUT',
+      headers,
+      body: reque,
+    })
+    .then(response => response.json())
+    .then(result => {
+      console.log('Success:', result);
+      
+      actualizarDoctorTabla()
+            vUsuario.value=``
+            nNombre.value=``
+            nApellido.value=``
+            nFecha.value=``
+            nSexo.value=``
+            nUsuario.value=``
+            nPassword.value=``
+            nEspecialidad=``
+            nTel.value=``
+            tipo=`Doctor`
+            alert("Actualizado")
+      
+    })
+    .catch(error => {
+      console.error('Error:', error);
+            vUsuario.value=``
+            nNombre.value=``
+            nApellido.value=``
+            nFecha.value=``
+            nSexo.value=``
+            nUsuario.value=``
+            nPassword.value=``
+            nEspecialidad=``
+            nTel.value=``
+            tipo=`Doctor`
+            alert("Error")
     });
 
-
-    }
-  
-  
-
-
-
-
-     
-  
-  
+}

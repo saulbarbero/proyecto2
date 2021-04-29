@@ -7,21 +7,36 @@
     <title>UHospital - Administración</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" />
-    <link rel="stylesheet" href="css/all.min.css" />
-    <link rel="stylesheet" href="css/bootstrap.min.css" />
-    <link rel="stylesheet" type="text/css" href="slick/slick.css"/>    
-    <link rel="stylesheet" type="text/css" href="slick/slick-theme.css"/>
-    <link rel="stylesheet" href="css/templatemo-style.css" />
-    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="../Administrador/partesVer/css/all.min.css" />
+    <link rel="stylesheet" href="../Administrador/partesVer/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../Administrador/partesVer/slick/slick.css"/>    
+    <link rel="stylesheet" type="text/css" href="../Administrador/partesVer/slick/slick-theme.css"/>
+    <link rel="stylesheet" href="../Administrador/partesVer/css/templatemo-style.css" />
+    <link rel="stylesheet" href="../Administrador/partesVer/style.css">
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+        
+   
+        
+    <!--====== Bootstrap CSS ======-->
+    <link rel="stylesheet" href="../Administrador/partesVer/assets/css/bootstrap.min.css">  
+   
+    
+    <!--====== Style CSS ======-->
+   <link rel="stylesheet" href="../Administrador/partesVer/assets/css/style.css"> 
+
   </head>
   <body id="servicesPage">
-    <div class="parallax-window" data-parallax="scroll" data-image-src="img/bg-01.jpg">
+    <div class="parallax-window" data-parallax="scroll" data-image-src="img\wgMLUS.jpg">
       <div class="container-fluid">
         <div class="row tm-brand-row">
         <div class="col-lg-4 col-11">
             <div class="tm-brand-container tm-bg-white-transparent">
     <!--Logo-->
-            <img class="dib0" src="img\logo11.png" WIDTH=150 HEIGHT=150>
+            <img class="dib0" src="img\logo2 corte.png" WIDTH=150 HEIGHT=150>
              </i>
                 <div class="tm-brand-texts">
                      <h1 class="text-uppercase tm-brand-name">UHospital</h1>
@@ -50,21 +65,22 @@
                         <div class="tm-nav-link-highlight"></div>
                         <a class="nav-link" href="../Index/index.html">Home</a>
                       </li>
-        <!--Ver Pacientes-->              
-                    <li class="nav-item">
-                        <div class="tm-nav-link-highlight"></div>
-                        <a class="nav-link" href="../Administrador/verPacientes.html">Ver Pacientes</a>
-                    </li>
+        
         <!--Ver Doctores-->              
                     <li class="nav-item">
                         <div class="tm-nav-link-highlight"></div>
-                        <a class="nav-link" href="../Administrador/verDoctores.html">Ver Doctores</a>
+                        <a class="nav-link" href="../Administrador/verDoctores.html">Doctores</a>
                     </li>>
         <!--Ver Enfermeras-->
                         <li class="nav-item">
                         <div class="tm-nav-link-highlight"></div>
-                        <a class="nav-link" href="../Administrador/verEnfermeras.html">Ver Enfermeras</a>
+                        <a class="nav-link" href="../Administrador/verEnfermeras.html">Enfermeras</a>
                       </li>
+        <!--Ver Medicamentos-->              
+                      <li class="nav-item active">
+                        <div class="tm-nav-link-highlight"></div>
+                        <a class="nav-link" href="../Administrador/verMedicamentos.html"> Medicamentos</a>
+                        </li>
                       <!--Login-->              
                     <li class="nav-item">
                       <div class="tm-nav-link-highlight"></div>
@@ -83,7 +99,7 @@
             <div class="parallax-window tm-services-parallax-header tm-testimonials-parallax-header"
                  data-parallax="scroll"
                  data-z-index="101"
-                 data-image-src="img/ice-mountain.jpg">
+                 data-image-src="img\banner.jpg">
 
                  <div class="tm-bg-black-transparent text-center tm-services-header tm-testimonials-header">
                     <h2 class="text-uppercase tm-services-page-title tm-testimonials-page-title">Modulo de Administración</h2>
@@ -97,11 +113,9 @@
             <div class="wrap">
                
                 <ul class="tabs">
-                    <li><a href="#tab1"><span class="fas fa-2x fa-user-injured"></span><span class="tab-text">Pacientes</span></a></li>
-                    <li><a href="#tab2"><span class="fas fa-2x fa-user-md"></span><span class="tab-text">Medicos</span></a></li>
-                    <li><a href="#tab3"><span class="fas fa-2x fa-user-nurse"></span><span class="tab-text">Enfermeras</span></a></li>
-                    <li><a href="#tab4"><span class="fas fa-2x fa-pills"></span><span class="tab-text">Medicamentos</span></a></li>
-                </ul>
+                    <li><a href="#tab1"><span class="fas fa-2x fa-user-injured"></span><span class="tab-text">Carga Pacientes</span></a></li>
+                    <li><a href="#tab2"><span class="fas fa-2x fa-user-injured"></span><span class="tab-text">Ver Pacientes</span></a></li>
+                   </ul>
 
                 <div class="col-12 tm-carousel">   
                     <div class="secciones">
@@ -109,33 +123,43 @@
                     <div class="tm-bg-black-transparent tm-testimonial-box text-center">  
                                           
                         <article id="tab1">
-                            <h1>Pacientes</h1>
-
-                            <div id='cardsc' class="row"></div>
+                            <h1>Carga Masiva Pacientes</h1>
                             <p>
-                              <div id='cardsc' class="row"></div>
+                              <label for="avatar">Elija Archivo a Cargar</label>
+                            </p>
+                            <p>
+                              <input type="file"
+                               id="carga" name="carga"
+                               accept=".csv">
+                               <br>
+                               <button class="btn btn-outline-success btn-sm" onclick="cargar()">Cargar</button>
                             </p>
                         </article>
                     </div>
     
                     <article id="tab2">
-                        <h1>Medicos</h1>
-                        <div id='tablausers' class="row"></div>
-                    </article>
+                      <h1>Pacientes</h1>
+                      <div id='tablausers' class="row"></div>
+                  </article>
 
                     <article id="tab3">
-                        <h1>Enfermeras</h1>
-                        <p>
-
-                        </p>
+                      <h1>Carga Masiva Enfermeras</h1>
+                      <p>
+                        <label for="avatar">Elija Archivo a Cargar</label>
+                      </p>
+                      <p>
+                        <input type="file"
+                         id="cargaEnfermera" name="cargaEnfermera"
+                         accept=".csv">
+                         <br>
+                         <button class="btn btn-outline-success btn-sm" onclick="cargarEnfermera()">Cargar</button>
+                      </p>
                     </article>
 
-                    <article id="tab4">
-                        <h1>Medicamentos</h1>
-                        <p>
+                    
 
-                        </p>
-                    </article>
+                    <button type="submit" class="btn btn-outline-info btn-sm">Generar PDF</button>
+                    <button class="btn btn-outline-success btn-sm" onclick="location.reload()">Actualizar</button>
 
                     </div>        
               </div>
@@ -145,7 +169,21 @@
 
             </div>
 
-            
+            <div class="services-content mt-30">
+              <h4 class="services-title">Modificar Pacientes</h4>
+              <br>
+              <input type="text" id="vUsuario" placeholder="Usuario a Modificar">
+              <input type="text" id="nNombre" placeholder="Nuevo Nombre">
+              <input type="text" id="nApellido" placeholder="Nuevo Apellido">
+              <input type="date" id="nFecha" placeholder="Nueva Fecha">
+              <input type="text" id="nSexo" placeholder="Nuevo Sexo (M/F)">
+              <input type="text" id="nUsuario" placeholder="Nuevo Usuario">
+              <input type="text" id="nPassword" placeholder="Nueva Contraseña">
+              <input type="text" id="nTel" placeholder="Nuevo Telefono">
+              <br>
+              <button class="btn btn btn-success" onclick="modificarPaciente()">Modificar Paciente</button>
+                                     
+          </div>
         </section>
 
        
@@ -161,7 +199,9 @@
       <!-- .container-fluid -->
     </div>
 
-    <script src="acciones.js"></script>
+    <script src="../Administrador/acciones.js"></script>
+    
+    
     <script src="js/jquery.min.js"></script>
     <script src="js/parallax.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

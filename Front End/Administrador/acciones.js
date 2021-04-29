@@ -9,6 +9,119 @@ headers.append('GET', 'POST', 'OPTIONS','PUT','DELETE');
 
 
 
+
+function cargar(){
+  actualizarPacientesTabla()
+  let file = document.getElementById("carga").files[0];
+  if (file) {
+      let reader = new FileReader();
+      reader.readAsText(file, "UTF-8");
+      reader.onload = function (evt) {
+          let cuerpo = {
+              data:evt.target.result
+          }
+          actualizarPacientesTabla()
+          console.log(JSON.stringify(cuerpo))
+          fetch('http://localhost:5000/carga', {
+          method: 'POST',
+          headers,
+          body: JSON.stringify(cuerpo),
+          })
+          .then(response => response.json())
+          .then(result => {
+            actualizarPacientesTabla()
+              console.log('Success:', result);
+              actualizarPacientesTabla()
+              
+          })
+          .catch(error => {
+              console.error('Error:', error);
+          });
+
+      }
+      reader.onerror = function (evt) {
+          
+      }
+  }
+}
+
+function modificarPaciente(){
+  
+  let userOld = document.getElementById("vUsuario");
+  let nombre = document.getElementById("nNombre");
+  let apellido = document.getElementById("nApellido");
+  let fecha = document.getElementById("nFecha");
+  let sex = document.getElementById("nSexo");
+  let user = document.getElementById("nUsuario");
+  let pass = document.getElementById("nPassword");
+  let especialidad = "Ninguna";
+  let tel = document.getElementById("nTel");
+  let tipo = "Paciente";
+
+
+    let headers = new Headers();
+      headers.append('Content-Type', 'application/json');
+      headers.append('Accept', 'application/json');
+      headers.append('Access-Control-Allow-Origin', 'http://localhost:5000');
+      headers.append('Access-Control-Allow-Credentials', 'true');
+      headers.append('GET', 'POST', 'OPTIONS','PUT','DELETE');
+      
+    let reque = `{
+            "user":"${vUsuario.value}",
+            "nombreNuevo":"${nNombre.value}",
+            "apellidoNuevo":"${nApellido.value}",
+            "fechaNuevo":"${nFecha.value}",
+            "sexoNuevo":"${nSexo.value}",
+            "userNuevo":"${nUsuario.value}",
+            "passwordNuevo":"${nPassword.value}",
+            "especialidadNuevo":"Ninguna",
+            "telefonoNuevo":"${nTel.value}",
+            "tipoNuevo":"Paciente"
+    }`
+
+    console.log(reque)
+    
+    fetch('http://localhost:5000/pacientes/'+userOld.value, {
+      method: 'PUT',
+      headers,
+      body: reque,
+    })
+    .then(response => response.json())
+    .then(result => {
+      console.log('Success:', result);
+      
+      actualizarPacientesTabla()
+            vUsuario.value=``
+            nNombre.value=``
+            nApellido.value=``
+            nFecha.value=``
+            nSexo.value=``
+            nUsuario.value=``
+            nPassword.value=``
+            especialidad=`Ninguna`
+            nTel.value=``
+            tipo=`Paciente`
+            alert("Actualizado")
+      
+    })
+    .catch(error => {
+      console.error('Error:', error);
+            vUsuario.value=``
+            nNombre.value=``
+            nApellido.value=``
+            nFecha.value=``
+            nSexo.value=``
+            nUsuario.value=``
+            nPassword.value=``
+            especialidad=`Ninguna`
+            nTel.value=``
+            tipo=`Paciente`
+            alert("Error")
+    });
+
+}
+
+
 function eliminarPaciente(user){
 
   console.log(user)
@@ -35,8 +148,11 @@ text2 = `<table class="table" style="margin=10px">
 <th scope="col">#</th>
 <th scope="col">Nombre</th>
 <th scope="col">Apellido</th>
+<th scope="col">Fecha</th>
+<th scope="col">Sexo</th>
 <th scope="col">Contraseña</th>
 <th scope="col">Usuario</th>
+<th scope="col">Telefono</th>
 </tr>
 </thead>
 <tbody>`
@@ -58,8 +174,11 @@ fetch('http://localhost:5000/obtenerPacientes')
         <th scope="row">${i+1}</th>
         <td>${data[i].nombre}</td>
         <td>${data[i].apellido}</td>
+        <td>${data[i].fecha}</td>
+        <td>${data[i].sexo}</td>
         <td>${data[i].password}</td>
         <td>${data[i].user}</td>
+        <td>${data[i].telefono}</td>
         <td> <button href="#" class="btn btn-outline-danger btn-sm"  onclick="eliminarPaciente('${data[i].user}')">Eliminar</button> </td>
         </tr>
         `
@@ -104,6 +223,7 @@ fetch('http://localhost:5000/obtenerPacientes')
 
 
 function actualizarPacientesTabla(){
+  
 let text8=""
 text8 = `<table class="table" style="margin=10px">
 <thead>
@@ -111,8 +231,11 @@ text8 = `<table class="table" style="margin=10px">
 <th scope="col">#</th>
 <th scope="col">Nombre</th>
 <th scope="col">Apellido</th>
+<th scope="col">Fecha</th>
+<th scope="col">Sexo</th>
 <th scope="col">Contraseña</th>
 <th scope="col">Usuario</th>
+<th scope="col">Telefono</th>
 </tr>
 </thead>
 <tbody>`
@@ -134,8 +257,11 @@ fetch('http://localhost:5000/obtenerPacientes')
         <th scope="row">${i+1}</th>
         <td>${data[i].nombre}</td>
         <td>${data[i].apellido}</td>
+        <td>${data[i].fecha}</td>
+        <td>${data[i].sexo}</td>
         <td>${data[i].password}</td>
         <td>${data[i].user}</td>
+        <td>${data[i].telefono}</td>
         <td> <button href="#" class="btn btn-outline-danger btn-sm"  onclick="eliminarPaciente('${data[i].user}')">Eliminar</button> </td>
         </tr>
         `
@@ -151,7 +277,10 @@ fetch('http://localhost:5000/obtenerPacientes')
 });
 
 }
-      //aqui agrego las cartas de los pacientes por funcion
+
+
+
+//aqui agrego las cartas de los pacientes por funcion
     function actualizar(){
 
 
@@ -183,4 +312,4 @@ fetch('http://localhost:5000/obtenerPacientes')
 
     }
   
-  
+/////////////////////////////////////////////////////  Acciones Medicamento  ///////////////////////////////////////////////////////////////////

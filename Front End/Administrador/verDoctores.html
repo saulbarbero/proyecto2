@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>UHospital - Ver Doctores</title>
+    <title>UHospital - Doctores</title>
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" />
     <link rel="stylesheet" href="../Administrador/partesVer/css/all.min.css" />
@@ -32,13 +32,13 @@
 
   </head>
   <body id="servicesPage">
-    <div class="parallax-window" data-parallax="scroll" data-image-src="img/bg-01.jpg">
+    <div class="parallax-window" data-parallax="scroll" data-image-src="img\wgMLUS.jpg">
       <div class="container-fluid">
         <div class="row tm-brand-row">
         <div class="col-lg-4 col-11">
             <div class="tm-brand-container tm-bg-white-transparent">
     <!--Logo-->
-            <img class="dib0" src="img\logo11.png" WIDTH=150 HEIGHT=150>
+            <img class="dib0" src="img\logo2 corte.png" WIDTH=150 HEIGHT=150>
              </i>
                 <div class="tm-brand-texts">
                      <h1 class="text-uppercase tm-brand-name">UHospital</h1>
@@ -65,24 +65,25 @@
         <!--Home-->              
                      <li class="nav-item active">
                         <div class="tm-nav-link-highlight"></div>
-                        <a class="nav-link" href="../Administrador/administrador.html">Regresar</a>
+                        <a class="nav-link" href="../Administrador/administrador.html">Pacientes</a>
                       </li>
-        <!--Ver Pacientes-->              
-                    <li class="nav-item">
-                        <div class="tm-nav-link-highlight"></div>
-                        <a class="nav-link" href="../Administrador/verPacientes.html">Ver Pacientes</a>
-                    </li>
+        
         <!--Ver Doctores-->              
                     <li class="nav-item">
                         <div class="tm-nav-link-highlight"></div>
-                        <a class="nav-link" href="../Administrador/verDoctores.html">Ver Doctores</a>
+                        <a class="nav-link" href="../Administrador/verDoctores.html">Doctores</a>
                     </li>>
         <!--Ver Enfermeras-->
                         <li class="nav-item">
                         <div class="tm-nav-link-highlight"></div>
-                        <a class="nav-link" href="../Administrador/verEnfermeras.html">Ver Enfermeras</a>
+                        <a class="nav-link" href="../Administrador/verEnfermeras.html">Enfermeras</a>
                       </li>
-                      <!--Login-->              
+        <!--Ver Medicamentos-->              
+                    <li class="nav-item active">
+                        <div class="tm-nav-link-highlight"></div>
+                        <a class="nav-link" href="../Administrador/verMedicamentos.html">Medicamentos</a>
+                    </li>
+        <!--Login-->              
                     <li class="nav-item">
                       <div class="tm-nav-link-highlight"></div>
                      <a class="nav-link" href="../Index/index.html">Home</a>
@@ -93,15 +94,14 @@
               </div>
             </div>
           </div>
-
-       
 <!--Inicio modulo tab-->
         <section class="row tm-testimonials-section">
 
             <div class="wrap">
-               
+              
                 <ul class="tabs">
-                    <li><a href="#tab1"><span class="fas fa-2x fa-user-md"></span><span class="tab-text">Doctores</span></a></li>
+                    <li><a href="#tab1"><span class="fas fa-2x fa-user-md"></span><span class="tab-text">Carga Doctores</span></a></li>
+                    <li><a href="#tab2"><span class="fas fa-2x fa-user-md"></span><span class="tab-text"> Ver Doctores</span></a></li>
                     
                 </ul>
 
@@ -109,18 +109,35 @@
                     <div class="secciones">
 
                     <div class="tm-bg-black-transparent tm-testimonial-box text-center">  
-                                          
-                        <article id="tab1">
+                           
+                      <article id="tab1">
+                        <h1>Carga Masiva Doctores</h1>
+                              <p>
+                                <label for="avatar">Elija Archivo a Cargar</label>
+                              </p>
+                              <p>
+                                <input type="file"
+                                 id="cargadoctor" name="cargadoctor"
+                                 accept=".csv">
+                                 <br>
+                                 <button class="btn btn-outline-success btn-sm"  onclick="cargaDoctor()">Cargar</button>
+                              </p>
+                      </article>
+
+                        <article id="tab2">
                             <h1>Doctores</h1>
-                            <div id='tabladoctor' class="row"></div>
+                            <div id='tabladoctores' class="row"></div>
                         </article>
+
+                        
                     </div>
 
                     
     
                     
                     <!-- <button type="submit" onclick="" class="button">Ingresar</button> -->
-                        <button type="submit" class="btn btn-primary">Generar PDF</button>
+                        <button type="submit" class="btn btn-outline-info btn-sm">Generar PDF</button>
+                        <button class="btn btn-outline-success btn-sm" onclick="location.reload()">Actualizar</button>
 
                     </div>        
               </div>
@@ -132,15 +149,19 @@
 
             
             <div class="services-content mt-30">
-                <h4 class="services-title"><a href="#">Modificar Pacientes</a></h4>
-                <br>
-                <input type="text" id="vtitulo" placeholder="Titulo a Modificar">
-                <input type="text" id="ntitulo" placeholder="Nuevo Titulo">
-                <input type="text" id="nautor" placeholder="Nuevo Autor">
-                <input type="text" id="ndescripcion" placeholder="Nueva Descripcion">
-                <input type="text" id="nimagen" placeholder="Nueva Imagen">
-                <br>
-                <button class="btn btn btn-success" onclick="modificarlibro()">Modificar Libro</button>
+              <h4 class="services-title">Modificar Doctore</h4>
+              <br>
+              <input type="text" id="vUsuario" placeholder="Usuario a Modificar">
+              <input type="text" id="nNombre" placeholder="Nuevo Nombre">
+              <input type="text" id="nApellido" placeholder="Nuevo Apellido">
+              <input type="date" id="nFecha" placeholder="Nueva Fecha">
+              <input type="text" id="nSexo" placeholder="Nuevo Sexo (M/F)">
+              <input type="text" id="nUsuario" placeholder="Nuevo Usuario">
+              <input type="text" id="nPassword" placeholder="Nueva Contraseña">
+              <input type="text" id="nEspecialidad" placeholder="Nueva Especialidad">
+              <input type="text" id="nTel" placeholder="Nuevo Telefono">
+              <br>
+              <button class="btn btn btn-success" onclick="modificarDoctor()">Modificar Doctor</button>
                                        
             </div>
             
@@ -156,8 +177,10 @@
     </div>
       <!-- .container-fluid -->
     </div>
-   <!-- <script src="acciones.js"></script> -->
+
+    
     <script src="../Administrador/accionesDoctor.js"></script>
+
     <script src="../Administrador/partesVer/js/jquery.min.js"></script>
     <script src="../Administrador/partesVer/js/parallax.min.js"></script>
     <script src="../Administrador/partesVer/js/bootstrap.min.js"></script>
