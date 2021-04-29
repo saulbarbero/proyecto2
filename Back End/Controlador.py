@@ -1,6 +1,7 @@
 from Usuario import Usuario
 from Medicamento import Medicamento
 import json
+import re
 
 class Controlador:
     def __init__(self):
@@ -8,23 +9,8 @@ class Controlador:
         self.medicamento = []
 
         self.usuario.append(Usuario('doctor','apellido','fecha','M','usuarioD22','passD','especialidad','tel','Doctor'))
-        self.usuario.append(Usuario('doctor','apellido','fecha','M','usuarioD23','passD','especialidad','tel','Doctor'))
-        self.usuario.append(Usuario('doctor','apellido','fecha','M','usuarioD24','passD','especialidad','tel','Doctor'))
-        self.usuario.append(Usuario('enfermera','apellido','fecha','M','usuarioD11','passD','ninguna','tel','Enfermera'))
-        self.usuario.append(Usuario('enfermera','apellido','fecha','M','usuarioD12','passD','ninguna','tel','Enfermera'))
-        self.usuario.append(Usuario('enfermera','apellido','fecha','M','usuarioD13','passD','ninguna','tel','Enfermera'))
-        self.usuario.append(Usuario('enfermera','apellido','fecha','M','usuarioD14','passD','ninguna','tel','Enfermera'))
-        self.usuario.append(Usuario('enfermera','apellido','fecha','M','usuarioD15','passD','ninguna','tel','Enfermera'))
-        self.usuario.append(Usuario('enfermera','apellido','fecha','M','usuarioD16','passD','ninguna','tel','Enfermera'))
-        self.usuario.append(Usuario('enfermera','apellido','fecha','M','usuarioD17','passD','ninguna','tel','Enfermera'))
-        self.usuario.append(Usuario('paciente1','apellido1','fecha','M','usuarioD1','passD','ninguna','tel','Paciente'))
-        self.usuario.append(Usuario('paciente','apellido','fecha','M','usuarioD2','passD','ninguna','tel','Paciente'))
-        self.usuario.append(Usuario('paciente1','apellido1','fecha','M','usuarioD3','passD','ninguna','tel','Paciente'))
-        self.usuario.append(Usuario('paciente','apellido','fecha','M','usuario4','passD','ninguna','tel','Paciente'))
-        self.usuario.append(Usuario('paciente1','apellido1','fecha','M','usuarioD5','passD','ninguna','tel','Paciente'))
-        self.usuario.append(Usuario('paciente','apellido','fecha','M','usuarioD6','passD','ninguna','tel','Paciente'))
-        self.usuario.append(Usuario('paciente1','apellido1','fecha','M','usuarioD7','passD','ninguna','tel','Paciente'))
-        self.usuario.append(Usuario('paciente','apellido','fecha','M','usuarioD8','passD','ninguna','tel','Paciente'))
+        self.usuario.append(Usuario('doctor','apellido','fecha','M','usuarioD2233','passD','especialidad','tel','Enfermera'))
+        self.medicamento.append(Medicamento("Acetaminofen","10","Dolor de cabeza","10"))
         
         self.usuario.append(Usuario('Herbert','Reyes','14/04/2021','M','admin','1234','ninguna','12345678','Administrador'))
 
@@ -54,6 +40,7 @@ class Controlador:
     #Update
     def actualizarPaciente(self,user,nombreNuevo,apellidoNuevo,fechaNuevo,sexoNuevo,userNuevo,passwordNuevo,especialidadNuevo,telefonoNuevo,tipoNuevo):
         for x in self.usuario:
+            print(user)
             if x.user==user:
                 self.usuario[self.usuario.index(x)]=Usuario(nombreNuevo,apellidoNuevo,fechaNuevo,sexoNuevo,userNuevo,passwordNuevo,"Ninguna",telefonoNuevo,"Paciente")
                 return True
@@ -73,7 +60,7 @@ class Controlador:
                 return True
         return False
 
-    def actualizarMedicamento(self,nombreNuevo,precioNuevo,descripcionNuevo,cantidadNuevo):
+    def actualizarMedicamento(self,nombre,nombreNuevo,precioNuevo,descripcionNuevo,cantidadNuevo):
         for x in self.medicamento:
             if x.nombre==nombre:
                 self.medicamento[self.medicamento.index(x)]=Medicamento(nombreNuevo,precioNuevo,descripcionNuevo,cantidadNuevo)
@@ -106,3 +93,58 @@ class Controlador:
     #Registar usuarios
     def registrarPaciente(self,nombre,apellido,fecha,sexo,user,password,especialidad,telefono,tipo):
         self.usuario.append(Usuario(nombre,apellido,fecha,sexo,user,password,especialidad,telefono,tipo))
+
+#Carga Masiva
+    def cargamasiva(self,data):
+        informacion = re.split('\n',data)
+        
+        i=1
+        print(len(informacion))
+        while i < len(informacion):
+            
+            texto = re.split(',',informacion[i])
+            print(texto)
+            self.crearPaciente(texto[0],texto[1],texto[2],texto[3],texto[4],texto[5],'ninguna',texto[6],'Paciente')
+            i = i+1
+
+    def cargamasivaMedicamento(self,data):
+        informacion = re.split('\n',data)
+        
+        i=1
+        print(len(informacion))
+        while i < len(informacion):
+            
+            texto = re.split(',',informacion[i])
+            print(texto)
+            self.crearMedicamento(texto[0],texto[1],texto[2],texto[3])
+            i = i+1
+
+    def cargamasivaEnfermera(self,data):
+        informacion = re.split('\n',data)
+        
+        i=1
+        print(len(informacion))
+        while i < len(informacion):
+            
+            texto = re.split(',',informacion[i])
+            print(texto)
+            self.crearEnfermera(texto[0],texto[1],texto[2],texto[3],texto[4],texto[5],'ninguna',texto[6],'Enfermera')
+            i = i+1
+
+    def cargamasivaDoctor(self,data):
+        informacion = re.split('\n',data)
+        
+        i=1
+        print(len(informacion))
+        while i < len(informacion):
+            
+            texto = re.split(',',informacion[i])
+            print(texto)
+            self.crearDoctor(texto[0],texto[1],texto[2],texto[3],texto[4],texto[5],texto[6],texto[7],'Doctor')
+            i = i+1
+    
+    
+
+    
+    
+    

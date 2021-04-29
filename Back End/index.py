@@ -44,7 +44,7 @@ def crearMedicamento():
     return '{"Estado":"Medicamento Creado"}'
 
 
-#DELETE 
+#DELETE
 
 @app.route('/pacientes/<user>',methods=['DELETE'])
 def eliminarPaciente(user):
@@ -58,22 +58,35 @@ def eliminarMedicamento(nombre):
         return '{"data":"Eliminada"}'
     return '{"data":"Error"}'
 
+ 
 
-
-#PUT Actualizar
+#PUT Actualizar  
 @app.route('/pacientes/<user>',methods=['PUT']) 
 def actualizarPaciente(user):
     dato = request.json
-
-    if gestor.actualizarPaciente(user,dato['nombre'],dato['apellido'],dato['fecha'],dato['sexo'],dato['especialidad'],dato['telefono'],dato['tipo']):
+    if gestor.actualizarPaciente(user,dato['nombreNuevo'],dato['apellidoNuevo'],dato['fechaNuevo'],dato['sexoNuevo'],dato['userNuevo'],dato['passwordNuevo'],dato['especialidadNuevo'],dato['telefonoNuevo'],dato['tipoNuevo']):
         return '{"data":"Actualizada"}'
+    return '{"data":"Error"}'
+
+@app.route('/doctores/<user>',methods=['PUT']) 
+def actualizarDoctor(user):
+    dato = request.json
+    if gestor.actualizarDoctor(user,dato['nombreNuevo'],dato['apellidoNuevo'],dato['fechaNuevo'],dato['sexoNuevo'],dato['userNuevo'],dato['passwordNuevo'],dato['especialidadNuevo'],dato['telefonoNuevo'],dato['tipoNuevo']):
+        return '{"data":"Actualizada"}'
+    return '{"data":"Error"}'
+
+@app.route('/enfermeras/<user>',methods=['PUT']) 
+def actualizarEnfermera(user):
+    dato = request.json
+    if gestor.actualizarEnfermera(user,dato['nombreNuevo'],dato['apellidoNuevo'],dato['fechaNuevo'],dato['sexoNuevo'],dato['userNuevo'],dato['passwordNuevo'],dato['especialidadNuevo'],dato['telefonoNuevo'],dato['tipoNuevo']):
+        return '{"data":"Actualizada"}' 
     return '{"data":"Error"}'
 
 @app.route('/medicamentos/<nombre>',methods=['PUT']) 
 def actualizarMedicamento(nombre):
     dato = request.json
 
-    if gestor.actualizarMedicamento(nombre,dato['nombre'],dato['precio'],dato['descripcion'],dato['cantidad']):
+    if gestor.actualizarMedicamento(nombre,dato['nombreNuevo'],dato['precioNuevo'],dato['descripcionNuevo'],dato['cantidadNuevo']):
         return '{"data":"Actualizada"}'
     return '{"data":"Error"}'
 
@@ -94,6 +107,36 @@ def registroP():
     dato=request.json
     gestor.registrarPaciente(dato['nombre'],dato['apellido'],dato['fecha'],dato['sexo'],dato['user'],dato['password'],dato['especialidad'],dato['telefono'],dato['tipo'])
     return '{"data":"Creado"}'
+
+
+#Cargas
+@app.route('/carga',methods=['POST'])
+def carga():
+    dato = request.json
+    print(dato)
+    gestor.cargamasiva(dato['data'])
+    return '{"data":"Cargados"}'
+
+@app.route('/cargaMedicamento',methods=['POST'])
+def cargaMedicamento():
+    dato = request.json
+    print(dato)
+    gestor.cargamasivaMedicamento(dato['data'])
+    return '{"data":"Cargados"}'
+
+@app.route('/cargaEnfermera',methods=['POST'])
+def cargaEnfermera():
+    dato = request.json
+    print(dato)
+    gestor.cargamasivaEnfermera(dato['data'])
+    return '{"data":"Cargados"}'
+
+@app.route('/cargaDoctor',methods=['POST'])
+def cargaDoctor():
+    dato = request.json
+    print(dato)
+    gestor.cargamasivaDoctor(dato['data'])
+    return '{"data":"Cargados"}'
 
 #Iniciar el server
 if __name__ == "__main__":
