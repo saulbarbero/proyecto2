@@ -27,6 +27,9 @@ def obtenerPaciente():
 def obtenerMedicamento():
     return gestor.obtenerMedicamento()
 
+@app.route('/obtenerCita')
+def obtenerCita():
+    return gestor.obtenerCita()
 
 
 #POST Crear
@@ -43,6 +46,12 @@ def crearMedicamento():
     gestor.crearMedicamento(dato['nombre'],dato['precio'],dato['descripcion'],dato['cantidad'])
     return '{"Estado":"Medicamento Creado"}'
 
+@app.route('/citas',methods=['POST'])
+def crearCita():
+    dato = request.json
+    gestor.crearCita(dato['fecha'],dato['hora'],dato['motivo'],dato['estado'],dato['user'])
+    return '{"Estado":"Cita Creada"}'
+
 
 #DELETE
 
@@ -58,6 +67,11 @@ def eliminarMedicamento(nombre):
         return '{"data":"Eliminada"}'
     return '{"data":"Error"}'
 
+@app.route('/citas/<user>',methods=['DELETE'])
+def eliminarCita(user):
+    if(gestor.eliminarCita(user)):
+        return '{"data":"Eliminada"}'
+    return '{"data":"Error"}'
  
 
 #PUT Actualizar  
@@ -66,7 +80,7 @@ def actualizarPaciente(user):
     dato = request.json
     if gestor.actualizarPaciente(user,dato['nombreNuevo'],dato['apellidoNuevo'],dato['fechaNuevo'],dato['sexoNuevo'],dato['userNuevo'],dato['passwordNuevo'],dato['especialidadNuevo'],dato['telefonoNuevo'],dato['tipoNuevo']):
         return '{"data":"Actualizada"}'
-    return '{"data":"Error"}'
+    return '{"data":"Error"}' 
 
 @app.route('/doctores/<user>',methods=['PUT']) 
 def actualizarDoctor(user):
@@ -74,7 +88,7 @@ def actualizarDoctor(user):
     if gestor.actualizarDoctor(user,dato['nombreNuevo'],dato['apellidoNuevo'],dato['fechaNuevo'],dato['sexoNuevo'],dato['userNuevo'],dato['passwordNuevo'],dato['especialidadNuevo'],dato['telefonoNuevo'],dato['tipoNuevo']):
         return '{"data":"Actualizada"}'
     return '{"data":"Error"}'
-
+ 
 @app.route('/enfermeras/<user>',methods=['PUT']) 
 def actualizarEnfermera(user):
     dato = request.json
