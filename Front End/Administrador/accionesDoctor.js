@@ -1,3 +1,79 @@
+function createHeaders(keys) {
+  var result = [];
+  for (var i = 0; i < keys.length; i += 1) {
+    result.push({
+      id: keys[i],
+      name: keys[i],
+      prompt: keys[i],
+      width: 65,
+      align: "center",
+      padding: 0
+    });
+  }
+  return result;
+}
+
+function convertirdata(libro){
+  
+    var data ={
+      "Nombre":libro.nombre,
+      "Apellido":libro.apellido,
+      "Fecha":libro.fecha,
+      "Sexo":libro.sexo,
+      "User":libro.user,
+      "Password":libro.password,
+      "Especialidad":libro.especialidad,
+      "Telefono":libro.telefono
+    }
+    return data
+  
+  /*var data ={
+    "Titulo":libro.titulo,
+    "Autor":libro.autor,
+    "Descripcion":libro.descripcion
+  }
+
+  return data
+  */
+
+}
+
+function crearpdf(){
+  
+  fetch('http://localhost:5000/obtenerPacientes')
+  .then(response => response.json())
+  .then(data=>{
+    //Declarando los headers
+    let headers = createHeaders([
+      "Nombre",
+      "Apellido",
+      "Fecha",
+      "Sexo",
+      "User",
+      "Password",
+      "Especialidad",
+      "Telefono"
+    ]);
+    // Insertamos la data
+    let datos=[]
+    for(let i =0;i<data.length;i++){
+      datos.push(Object.assign({},convertirdata(data[i])))
+    }
+    console.log(datos)
+    var contentJsPdf = {
+      headers,
+      datos
+  };
+    var doc = new jsPDF({ putOnlyUsedFonts: true, orientation: "landscape" });
+    doc.table(75, 1, datos, headers, { autoSize: false });
+    doc.save("doctores.pdf")
+  })
+}
+
+
+
+
+
 //Declaracion de Headers
 
 let headers = new Headers()
@@ -43,7 +119,7 @@ function cargaDoctor(){
   }
 }
 
-//mostrar doctores por medio de una tabala
+//mostrar enfermeras por medio de una tabala
 
 let text2=""
 text2 = `<table class="table" style="margin=10px">
@@ -96,7 +172,7 @@ fetch('http://localhost:5000/obtenerPacientes')
 
   text2+=`</tbody>
           </table>`
-  document.getElementById("cargadoctor").innerHTML = text2;
+  document.getElementById("tabladoctor").innerHTML = text2;
 });
 
 function actualizarDoctorTabla(){
@@ -151,7 +227,7 @@ function actualizarDoctorTabla(){
   
     text1+=`</tbody>
             </table>`
-    document.getElementById("cargadoctor").innerHTML = text1;
+    document.getElementById("tabladoctor").innerHTML = text1;
   });
   
 }
@@ -224,7 +300,7 @@ function modificarDoctor(){
             nSexo.value=``
             nUsuario.value=``
             nPassword.value=``
-            nEspecialidad=``
+            especialidad=``
             nTel.value=``
             tipo=`Doctor`
             alert("Actualizado")
@@ -239,7 +315,7 @@ function modificarDoctor(){
             nSexo.value=``
             nUsuario.value=``
             nPassword.value=``
-            nEspecialidad=``
+            especialidad=``
             nTel.value=``
             tipo=`Doctor`
             alert("Error")

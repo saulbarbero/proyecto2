@@ -100,8 +100,8 @@
             <div class="wrap">
               
                 <ul class="tabs">
-                    <li><a href="#tab1"><span class="fas fa-2x fa-user-md"></span><span class="tab-text">Carga Doctores</span></a></li>
-                    <li><a href="#tab2"><span class="fas fa-2x fa-user-md"></span><span class="tab-text"> Ver Doctores</span></a></li>
+                    <li><a href="#tab1"><span class="fas fa-2x  fa-user-md"></span><span class="tab-text">Carga Doctores</span></a></li>
+                    <li><a href="#tab2"><span class="fas fa-2x  fa-user-md"></span><span class="tab-text"> Ver Doctores</span></a></li>
                     
                 </ul>
 
@@ -126,7 +126,7 @@
 
                         <article id="tab2">
                             <h1>Doctores</h1>
-                            <div id='tabladoctores' class="row"></div>
+                            <div id='tabladoctor' class="row"></div>
                         </article>
 
                         
@@ -136,7 +136,7 @@
     
                     
                     <!-- <button type="submit" onclick="" class="button">Ingresar</button> -->
-                        <button type="submit" class="btn btn-outline-info btn-sm">Generar PDF</button>
+                        <button type="submit" class="btn btn-outline-info btn-sm"  onclick="crearpdf()" >Generar PDF</button>
                         <button class="btn btn-outline-success btn-sm" onclick="location.reload()">Actualizar</button>
 
                     </div>        
@@ -149,7 +149,7 @@
 
             
             <div class="services-content mt-30">
-              <h4 class="services-title">Modificar Doctore</h4>
+              <h4 class="services-title">Modificar Doctor</h4>
               <br>
               <input type="text" id="vUsuario" placeholder="Usuario a Modificar">
               <input type="text" id="nNombre" placeholder="Nuevo Nombre">
@@ -178,8 +178,9 @@
       <!-- .container-fluid -->
     </div>
 
-    
+    <script src="../pdf.js"></script>
     <script src="../Administrador/accionesDoctor.js"></script>
+    
 
     <script src="../Administrador/partesVer/js/jquery.min.js"></script>
     <script src="../Administrador/partesVer/js/parallax.min.js"></script>
@@ -187,8 +188,6 @@
     <script src="../Administrador/partesVer/slick/slick.min.js"></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script><script  src="../Administrador/partesVer/script.js"></script>
 
-
-    <script src="../Administrador/partesVer/assets/js/acciones.js"></script>
 
     <!--====== Jquery js ======-->
     <script src="../Administrador/partesVer/assets/js/vendor/jquery-1.12.4.min.js"></script>
