@@ -1,6 +1,7 @@
 from Usuario import Usuario
 from Medicamento import Medicamento
 from Cita import Cita
+from Pedido import Pedido
 import json
 import re
 
@@ -9,22 +10,37 @@ class Controlador:
         self.usuario = []
         self.medicamento = []
         self.cita = []
+        self.pedido = []  
+        
 
         self.usuario.append(Usuario('paciente','apellido','fecha','M','usuarioPacienteD22','passD','especialidad','tel','Paciente'))
         self.usuario.append(Usuario('doctor','apellido','fecha','M','usuarioD221','passD','especialidad','tel','Doctor'))
-        self.usuario.append(Usuario('doctor','apellido','fecha','M','usuarioD220','passD','especialidad','tel','Doctor'))
-        self.usuario.append(Usuario('doctor','apellido','fecha','M','usuarioD223','passD','especialidad','tel','Doctor'))
-        self.usuario.append(Usuario('doctor','apellido','fecha','M','usuarioD221','passD','especialidad','tel','Doctor'))
-        self.usuario.append(Usuario('doctor','apellido','fecha','M','usuarioD225','passD','especialidad','tel','Doctor'))
+        
+        self.pedido.append(Pedido('acetaminofen','10','saul123456','1'))
+
+        self.cita.append(Cita('fecha','horas','motivo','Pendiente','user123456'))
 
         self.usuario.append(Usuario('doctor','apellido','fecha','M','usuarioD2233','passD','especialidad','tel','Enfermera'))
-        self.medicamento.append(Medicamento("Acetaminofen","10","Dolor de cabeza","10"))
-
+        self.medicamento.append(Medicamento("Acetaminofen","100","Dolor de cabeza","10"))
+ 
         
         
         self.usuario.append(Usuario('Herbert','Reyes','14/04/2021','M','admin','1234','ninguna','12345678','Administrador'))
 
 
+    #Comprar
+    def comprar(self,nombre,precio,cantidad,user):
+        self.pedido.append(Pedido(nombre,precio,cantidad,user))
+    
+    def obtenerPedido(self):
+        return json.dumps([ob.__dict__ for ob in self.pedido])
+
+    def eliminarPedido(self,nombre):
+        for x in self.pedido:
+            if x.nombre==nombre:
+                self.pedido.remove(x)
+                return True
+        return False
     #Create
     def crearPaciente(self,nombre,apellido,fecha,sexo,user,password,especialidad,telefono,tipo):
         self.usuario.append(Usuario(nombre,apellido,fecha,sexo,user,password,'ninguna',telefono,'Paciente'))
@@ -40,9 +56,15 @@ class Controlador:
 
     def crearCita(self,fecha,hora,motivo,estado,user):
         self.cita.append(Cita(fecha,hora,motivo,'Pendiente',user))
+        
+    def crearPedido(self,nombre,precio,user,cantidad):
+        self.pedido.append(Pedido(nombre,precio,user,'1'))
 
       
-    #Read usuarios 
+    #Read usuarios
+
+        
+
     def obtenerPaciente(self):
         return json.dumps([ob.__dict__ for ob in self.usuario])
 
@@ -52,6 +74,9 @@ class Controlador:
     
     def obtenerCita(self):
         return json.dumps([ob.__dict__ for ob in self.cita])
+
+    def obtenerPedido(self):
+        return json.dumps([ob.__dict__ for ob in self.pedido])
 
     #Update
     def actualizarPaciente(self,user,nombreNuevo,apellidoNuevo,fechaNuevo,sexoNuevo,userNuevo,passwordNuevo,especialidadNuevo,telefonoNuevo,tipoNuevo):
@@ -118,6 +143,7 @@ class Controlador:
     def inicioSesion(self,user,password):
         for x in self.usuario:
             if x.password==password and x.user==user:
+                userActual=user
                 return json.dumps(x.__dict__)   
         return '{"data":"Usuario no existe"}'
 

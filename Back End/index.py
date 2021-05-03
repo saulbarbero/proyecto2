@@ -11,6 +11,16 @@ CORS(app)
 
 gestor = Controlador()
 
+#Comprar
+@app.route('/pedido',methods=['POST'])
+def comprar():
+    dato = request.json
+    gestor.comprar(dato['nombre'], dato['precio'],dato['cantidad'],dato['user'])
+    return '{"Estado":"Pedido Creado"}'
+
+@app.route('/obtenerPedido')
+def obtenerPedido():
+    return gestor.obtenerPedido()
 
 #EndPoints
 
@@ -23,6 +33,7 @@ def home():
 def obtenerPaciente():
     return gestor.obtenerPaciente()
 
+
 @app.route('/obtenerMedicamentos')
 def obtenerMedicamento():
     return gestor.obtenerMedicamento()
@@ -30,6 +41,14 @@ def obtenerMedicamento():
 @app.route('/obtenerCita')
 def obtenerCita():
     return gestor.obtenerCita()
+
+@app.route('/pedidos/<nombre>',methods=['DELETE'])
+def eliminarPedido(nombre):
+    if(gestor.eliminarPedido(nombre)):
+        return '{"data":"Eliminada"}'
+    return '{"data":"Error"}'
+
+
 
 
 #POST Crear
@@ -52,6 +71,11 @@ def crearCita():
     gestor.crearCita(dato['fecha'],dato['hora'],dato['motivo'],dato['estado'],dato['user'])
     return '{"Estado":"Cita Creada"}'
 
+@app.route('/pedido',methods=['POST'])
+def crearPedido():
+    dato = request.json
+    gestor.crearPedido(dato['nombre'],dato['precio'],dato['user'],dato['cantidad'])
+    return '{"Estado":"Pedido Creado"}'
 
 #DELETE
 
@@ -157,3 +181,4 @@ if __name__ == "__main__":
     app.run(host="0.0.0.0",debug=True)
 
 
+ 
