@@ -1,3 +1,91 @@
+function createHeaders(keys) {
+  var result = [];
+  for (var i = 0; i < keys.length; i += 1) {
+    result.push({
+      id: keys[i],
+      name: keys[i],
+      prompt: keys[i],
+      width: 55,
+      align: "center",
+      padding: 0
+    });
+  }
+  return result;
+}
+
+function convertirdata(paciente){
+  if(paciente.tipo=='Paciente'){
+    var data ={
+      "Nombre":paciente.nombre,
+      "Apellido":paciente.apellido,
+      "Fecha":paciente.fecha,
+      "Sexo":paciente.sexo,
+      "User":paciente.user,
+      "Password":paciente.password,
+      "Telefono":paciente.telefono
+    }
+  
+    return data
+  }else{
+    var data ={
+      "Nombre":'',
+      "Apellido":'',
+      "Fecha":'',
+      "Sexo":'',
+      "User":'',
+      "Password":'',
+      "Telefono":''
+    }
+    return data
+  }
+  /*var data ={
+    "Nombre":paciente.nombre,
+    "Apeliido":paciente.apellido,
+    "Fecha":paciente.fecha,
+    "Sexo":paciente.sexo,
+    "User":paciente.user,
+    "Password":paciente.password,
+    "Telefono":paciente.telefono
+    */
+
+  }
+
+  
+
+
+
+function crearpdf(){
+  
+  fetch('http://localhost:5000/obtenerPacientes')
+  .then(response => response.json())
+  .then(data=>{
+      //Declarando los headers
+      let headers = createHeaders([
+        "Nombre",
+        "Apellido",
+        "Fecha",
+        "Sexo",
+        "User",
+        "Password",
+        "Telefono"
+      ]);
+      // Insertamos la data
+    let datos=[]
+    for(let i =0;i<data.length;i++){
+      datos.push(Object.assign({},convertirdata(data[i])))
+    }
+    console.log(datos)
+    var contentJsPdf = {
+      headers,
+      datos
+  };
+    var doc = new jsPDF({ putOnlyUsedFonts: true, orientation: "landscape" });
+    doc.table(1, 1, datos, headers, { autoSize: false });
+    doc.save("pacientes.pdf")
+  })
+}
+
+
 //Declaracion de Headers
 
 let headers = new Headers()

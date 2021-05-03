@@ -18,7 +18,9 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.5/jspdf.plugin.autotable.min.js"></script>
+   
         
    
         
@@ -136,7 +138,7 @@
     
                     
                     <!-- <button type="submit" onclick="" class="button">Ingresar</button> -->
-                        <button type="submit" class="btn btn-outline-info btn-sm">Generar PDF</button>
+                        <button type="submit" class="btn btn-outline-info btn-sm" onclick="crearpdf()">Generar PDF</button>
                         <button class="btn btn-outline-success btn-sm" onclick="location.reload()">Actualizar</button>
 
                     </div>        
@@ -153,9 +155,9 @@
                 <br>
                 <input type="text" id="vNombre" placeholder="Nombre del Medicamento">
                 <input type="text" id="nNombre" placeholder="Nuevo Nombre">
-                <input type="text" id="nPrecio" placeholder="Nuevo Precio">
+                <input type="number" id="nPrecio" placeholder="Nuevo Precio">
                 <input type="date" id="nDescripcion" placeholder="Nueva Descripcion">
-                <input type="text" id="nCantidad" placeholder="Nueva Cantidad">
+                <input type="number" id="nCantidad" placeholder="Nueva Cantidad">
                 <br>
                 <button class="btn btn btn-success" onclick="modificarMedicamento()">Modificar Medicamento</button>
                                        
@@ -174,7 +176,7 @@
       <!-- .container-fluid -->
     </div>
 
-    
+    <script src="../pdf.js"></script>
     <script src="../Administrador/accionesMedicina.js"></script>
 
     <script src="../Administrador/partesVer/js/jquery.min.js"></script>

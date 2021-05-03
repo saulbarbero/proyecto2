@@ -5,7 +5,7 @@ function createHeaders(keys) {
       id: keys[i],
       name: keys[i],
       prompt: keys[i],
-      width: 65,
+      width: 45,
       align: "center",
       padding: 0
     });
@@ -13,48 +13,58 @@ function createHeaders(keys) {
   return result;
 }
 
-function convertirdata(libro){
-  
+function convertirdata(doctor){
+  if(doctor.tipo=='Doctor'){
     var data ={
-      "Nombre":libro.nombre,
-      "Apellido":libro.apellido,
-      "Fecha":libro.fecha,
-      "Sexo":libro.sexo,
-      "User":libro.user,
-      "Password":libro.password,
-      "Especialidad":libro.especialidad,
-      "Telefono":libro.telefono
+      "Nombre":doctor.nombre,
+      "Apellido":doctor.apellido,
+      "Fecha":doctor.fecha,
+      "Sexo":doctor.sexo,
+      "User":doctor.user,
+      "Password":doctor.password,
+      "Especialidad":doctor.especialidad,
+      "Telefono":doctor.telefono
+    }
+  
+    return data
+  }else{
+    var data ={
+      "Nombre":'',
+      "Apellido":'',
+      "Fecha":'',
+      "Sexo":'',
+      "User":'',
+      "Password":'',
+      "Especialidad":'',
+      "Telefono":''
     }
     return data
-  
-  /*var data ={
-    "Titulo":libro.titulo,
-    "Autor":libro.autor,
-    "Descripcion":libro.descripcion
   }
 
-  return data
-  */
 
-}
+  }
+
+  
+
+
 
 function crearpdf(){
   
   fetch('http://localhost:5000/obtenerPacientes')
   .then(response => response.json())
   .then(data=>{
-    //Declarando los headers
-    let headers = createHeaders([
-      "Nombre",
-      "Apellido",
-      "Fecha",
-      "Sexo",
-      "User",
-      "Password",
-      "Especialidad",
-      "Telefono"
-    ]);
-    // Insertamos la data
+      //Declarando los headers
+      let headers = createHeaders([
+        "Nombre",
+        "Apellido",
+        "Fecha",
+        "Sexo",
+        "User",
+        "Password",
+        "Especialidad",
+        "Telefono"
+      ]);
+      // Insertamos la data
     let datos=[]
     for(let i =0;i<data.length;i++){
       datos.push(Object.assign({},convertirdata(data[i])))
@@ -65,7 +75,7 @@ function crearpdf(){
       datos
   };
     var doc = new jsPDF({ putOnlyUsedFonts: true, orientation: "landscape" });
-    doc.table(75, 1, datos, headers, { autoSize: false });
+    doc.table(1, 1, datos, headers, { autoSize: false });
     doc.save("doctores.pdf")
   })
 }
