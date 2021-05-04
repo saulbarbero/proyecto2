@@ -44,7 +44,7 @@ function createHeaders(keys) {
   
   function crearpdf(){
     
-    fetch('http://localhost:5000/obtenerPedido')
+    fetch('http://34.121.228.56:5000/obtenerPedido')
     .then(response => response.json())
     .then(data=>{
         //Declarando los headers
@@ -86,7 +86,7 @@ function crearCita(){
     var doctor = "Ninguno";
     
     
-    fetch(`http://localhost:5000/citas`,
+    fetch(`http://34.121.228.56:5000/citas`,
     {
         method:`POST`,
         headers,
@@ -140,7 +140,7 @@ text22 = `<table class="table" style="margin=10px">
 </thead>
 <tbody>`
 
-fetch('http://localhost:5000/obtenerCita')
+fetch('http://34.121.228.56:5000/obtenerCita')
 .then(response => response.json())
 .then(data =>{
   var i;
@@ -186,7 +186,7 @@ text221 = `<table class="table" style="margin=10px">
 </thead>
 <tbody>`
 
-fetch('http://localhost:5000/obtenerCita')
+fetch('http://34.121.228.56:5000/obtenerCita')
 .then(response => response.json())
 .then(data =>{
   var i;
@@ -223,7 +223,7 @@ fetch('http://localhost:5000/obtenerCita')
 function eliminarCita(user){
     console.log(user)
    
-  fetch('http://localhost:5000/citas/'+user,{
+  fetch('http://34.121.228.56:5000/citas/'+user,{
       method:'DELETE'
   })
   .then(res => res.text())
@@ -244,7 +244,7 @@ function comprar(nombre,precio,cantidad,user){
     if(useri==""){
         alert(`Por favor ingrese su usuario`)
     }else{
-        fetch(`http://localhost:5000/pedido`,
+        fetch(`http://34.121.228.56:5000/pedido`,
     {
         method:`POST`,
         headers,
@@ -293,7 +293,7 @@ text1 = `<table class="table" style="margin=10px">
 </thead>
 <tbody>`
 
-fetch('http://localhost:5000/obtenerPedido')
+fetch('http://34.121.228.56:5000/obtenerPedido')
 .then(response => response.json())
 .then(data =>{
   var i;
@@ -338,7 +338,7 @@ text11 = `<table class="table" style="margin=10px">
 </thead>
 <tbody>`
 
-fetch('http://localhost:5000/obtenerPedido')
+fetch('http://34.121.228.56:5000/obtenerPedido')
 .then(response => response.json())
 .then(data =>{
   var i;
@@ -376,7 +376,7 @@ function eliminarPedido(nombre){
 
     console.log(nombre)
       
-    fetch('http://localhost:5000/pedidos/'+nombre,{
+    fetch('http://34.121.228.56:5000/pedidos/'+nombre,{
         method:'DELETE'
     }) 
     .then(res => res.text())
@@ -390,7 +390,7 @@ function eliminarPedido(nombre){
 ////////////////////////////////////////Mostrar cards de los medicamentos//////////////////////////////////////////////////////////////////
     document.getElementById("cardsc").innerHTML = '';
     let text="";
-    fetch('http://localhost:5000/obtenerMedicamentos')
+    fetch('http://34.121.228.56:5000/obtenerMedicamentos')
     .then(response => response.json())
     .then(data =>{
         var i;
@@ -444,7 +444,7 @@ text2 = `<table class="table" style="margin=10px">
 </thead>
 <tbody>`
 
-fetch('http://localhost:5000/obtenerCita')
+fetch('http://34.121.228.56:5000/obtenerCita')
 .then(response => response.json())
 .then(data =>{
   var i;

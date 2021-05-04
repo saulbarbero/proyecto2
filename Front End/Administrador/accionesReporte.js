@@ -43,7 +43,7 @@ function createHeaders(keys) {
   
   function crearpdf(){
     
-    fetch('http://localhost:5000/obtenerPacientes')
+    fetch('http://34.121.228.56:5000/obtenerPacientes')
     .then(response => response.json())
     .then(data=>{
         //Declarando los headers

@@ -27,7 +27,7 @@ function CrearUsuario(){
         return
     }
 
-    fetch(`http://localhost:5000/registroP`,
+    fetch(`http://34.121.228.56:5000/registroP`,
     {
         method:`POST`,
         headers,
@@ -85,7 +85,7 @@ function InicioSesion(){
     let user = document.getElementById("loginUser");
     let pass = document.getElementById("loginPass");
 
-    fetch(`http://localhost:5000/login/${user.value}/${pass.value}`)
+    fetch(`http://34.121.228.56:5000/login/${user.value}/${pass.value}`)
     .then(response => response.json())
     .then(data => {
         

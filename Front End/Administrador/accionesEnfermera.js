@@ -48,7 +48,7 @@ function convertirdata(enfermera){
 
 function crearpdf(){
   
-  fetch('http://localhost:5000/obtenerPacientes')
+  fetch('http://34.121.228.56:5000/obtenerPacientes')
   .then(response => response.json())
   .then(data=>{
       //Declarando los headers
@@ -100,7 +100,7 @@ function cargaEnfermera(){
           }
           actualizarEnfermeraTabla()
           console.log(JSON.stringify(cuerpo))
-          fetch('http://localhost:5000/cargaEnfermera', {
+          fetch('http://34.121.228.56:5000/cargaEnfermera', {
           method: 'POST',
           headers,
           body: JSON.stringify(cuerpo),
@@ -141,7 +141,7 @@ text2 = `<table class="table" style="margin=10px">
 </thead>
 <tbody>`
 
-fetch('http://localhost:5000/obtenerPacientes')
+fetch('http://34.121.228.56:5000/obtenerPacientes')
 .then(response => response.json())
 .then(data =>{
   var i;
@@ -194,7 +194,7 @@ function actualizarEnfermeraTabla(){
   </thead>
   <tbody>`
   
-  fetch('http://localhost:5000/obtenerPacientes')
+  fetch('http://34.121.228.56:5000/obtenerPacientes')
   .then(response => response.json())
   .then(data =>{
     var i;
@@ -237,7 +237,7 @@ function eliminarEnfermera(user){
 
   console.log(user)
     alert(user)
-  fetch('http://localhost:5000/pacientes/'+user,{
+  fetch('http://34.121.228.56:5000/pacientes/'+user,{
       method:'DELETE'
   }) 
   .then(res => res.text())
@@ -283,7 +283,7 @@ function modificarEnfermera(){
 
     console.log(reque)
     
-    fetch('http://localhost:5000/enfermeras/'+userOld.value, {
+    fetch('http://34.121.228.56:5000/enfermeras/'+userOld.value, {
       method: 'PUT',
       headers,
       body: reque,

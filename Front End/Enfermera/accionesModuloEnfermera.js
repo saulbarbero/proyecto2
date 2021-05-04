@@ -56,7 +56,7 @@ function crearpdf(){
   let usuarioii = usuario.value;
   let doctorii = doctor.value;
   
-  fetch('http://localhost:5000/obtenerFactura',)
+  fetch('http://34.121.228.56:5000/obtenerFactura',)
   .then(response => response.json())
   .then(data=>{
       //Declarando los headers
@@ -112,7 +112,7 @@ text = `<table class="table" style="margin=10px">
 </thead>
 <tbody>`
 
-fetch('http://localhost:5000/obtenerCita')
+fetch('http://34.121.228.56:5000/obtenerCita')
 .then(response => response.json())
 .then(data =>{
   var i;
@@ -162,7 +162,7 @@ text1 = `<table class="table" style="margin=10px">
 </thead>
 <tbody>`
 
-fetch('http://localhost:5000/obtenerCita')
+fetch('http://34.121.228.56:5000/obtenerCita')
 .then(response => response.json())
 .then(data =>{
   var i;
@@ -213,7 +213,7 @@ text1 = `<table class="table" style="margin=10px">
 </thead>
 <tbody>`
 
-fetch('http://localhost:5000/obtenerCita')
+fetch('http://34.121.228.56:5000/obtenerCita')
 .then(response => response.json())
 .then(data =>{
   var i;
@@ -279,7 +279,7 @@ function aceptarCita(user,fecha,hora,motivo,estado,doctor){
 
     console.log(reque)
     
-    fetch('http://localhost:5000/citas/'+userOld.value, {
+    fetch('http://34.121.228.56:5000/citas/'+userOld.value, {
       method: 'PUT',
       headers,
       body: reque,
@@ -331,7 +331,7 @@ function rechazarCita(user,fecha,hora,motivo,estado,doctor){
 
     console.log(reque)
     
-    fetch('http://localhost:5000/citas/'+userOld.value, {
+    fetch('http://34.121.228.56:5000/citas/'+userOld.value, {
       method: 'PUT',
       headers,
       body: reque,
@@ -369,7 +369,7 @@ text1 = `<table class="table" style="margin=10px">
 </thead>
 <tbody>`
 
-fetch('http://localhost:5000/obtenerCita')
+fetch('http://34.121.228.56:5000/obtenerCita')
 .then(response => response.json())
 .then(data =>{
   var i;
@@ -431,7 +431,7 @@ function crearFactura(){
   
 
   
-  fetch(`http://localhost:5000/factura`,
+  fetch(`http://34.121.228.56:5000/factura`,
   {
       method:`POST`,
       headers,

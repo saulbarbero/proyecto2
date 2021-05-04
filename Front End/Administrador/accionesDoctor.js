@@ -50,7 +50,7 @@ function convertirdata(doctor){
 
 function crearpdf(){
   
-  fetch('http://localhost:5000/obtenerPacientes')
+  fetch('http://34.121.228.56:5000/obtenerPacientes')
   .then(response => response.json())
   .then(data=>{
       //Declarando los headers
@@ -106,7 +106,7 @@ function cargaDoctor(){
           }
           actualizarDoctorTabla()
           console.log(JSON.stringify(cuerpo))
-          fetch('http://localhost:5000/cargaDoctor', {
+          fetch('http://34.121.228.56:5000/cargaDoctor', {
           method: 'POST',
           headers,
           body: JSON.stringify(cuerpo),
@@ -148,7 +148,7 @@ text2 = `<table class="table" style="margin=10px">
 </thead>
 <tbody>`
 
-fetch('http://localhost:5000/obtenerPacientes')
+fetch('http://34.121.228.56:5000/obtenerPacientes')
 .then(response => response.json())
 .then(data =>{
   var i;
@@ -203,7 +203,7 @@ function actualizarDoctorTabla(){
   </thead>
   <tbody>`
   
-  fetch('http://localhost:5000/obtenerPacientes')
+  fetch('http://34.121.228.56:5000/obtenerPacientes')
   .then(response => response.json())
   .then(data =>{
     var i;
@@ -247,7 +247,7 @@ function eliminarDoctor(user){
 
   console.log(user)
     alert(user)
-  fetch('http://localhost:5000/pacientes/'+user,{
+  fetch('http://34.121.228.56:5000/pacientes/'+user,{
       method:'DELETE'
   }) 
   .then(res => res.text())
@@ -293,7 +293,7 @@ function modificarDoctor(){
 
     console.log(reque)
     
-    fetch('http://localhost:5000/doctores/'+userOld.value, {
+    fetch('http://34.121.228.56:5000/doctores/'+userOld.value, {
       method: 'PUT',
       headers,
       body: reque,

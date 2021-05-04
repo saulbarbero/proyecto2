@@ -49,7 +49,7 @@ function convertirdata(factura){
 function crearpdf(){
  
   
-  fetch('http://localhost:5000/obtenerReceta',)
+  fetch('http://34.121.228.56:5000/obtenerReceta',)
   .then(response => response.json())
   .then(data=>{
       //Declarando los headers
@@ -98,7 +98,7 @@ function crearReceta(){
   
 
   
-  fetch(`http://localhost:5000/receta`,
+  fetch(`http://34.121.228.56:5000/receta`,
   {
       method:`POST`,
       headers,
@@ -144,7 +144,7 @@ function crearReceta(){
     </thead>
     <tbody>`
     
-    fetch('http://localhost:5000/obtenerCita')
+    fetch('http://34.121.228.56:5000/obtenerCita')
     .then(response => response.json())
     .then(data =>{
       var i;
@@ -209,7 +209,7 @@ function crearReceta(){
     
         console.log(reque)
         
-        fetch('http://localhost:5000/citas/'+userOld.value, {
+        fetch('http://34.121.228.56:5000/citas/'+userOld.value, {
           method: 'PUT',
           headers,
           body: reque,
@@ -261,7 +261,7 @@ function crearReceta(){
     
         console.log(reque)
         
-        fetch('http://localhost:5000/citas/'+userOld.value, {
+        fetch('http://34.121.228.56:5000/citas/'+userOld.value, {
           method: 'PUT',
           headers,
           body: reque,
@@ -297,7 +297,7 @@ function crearReceta(){
     </thead>
     <tbody>`
     
-    fetch('http://localhost:5000/obtenerCita')
+    fetch('http://34.121.228.56:5000/obtenerCita')
     .then(response => response.json())
     .then(data =>{
       var i;
