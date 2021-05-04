@@ -83,6 +83,7 @@ function crearCita(){
     var motivo = document.getElementById("motivo");
     var useri1 = userActual.value;
     var estado = "Pendiente";
+    var doctor = "Ninguno";
     
     
     fetch(`http://localhost:5000/citas`,
@@ -94,7 +95,8 @@ function crearCita(){
             "hora":"${hora.value}",
             "motivo":"${motivo.value}",
             "estado":"Pendiente",
-            "user":"${useri1}"
+            "user":"${useri1}",
+            "doctor":"Ninguno"
                  }`
     })
     .then(response => response.json())
@@ -142,8 +144,7 @@ fetch('http://localhost:5000/obtenerCita')
 .then(response => response.json())
 .then(data =>{
   var i;
-  
-
+  var userii = userActual.value;
  
 
     for(i=0;i<data.length;i++){
@@ -189,6 +190,7 @@ fetch('http://localhost:5000/obtenerCita')
 .then(response => response.json())
 .then(data =>{
   var i;
+  var userii = userActual.value;
   
 
  

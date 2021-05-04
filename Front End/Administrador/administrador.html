@@ -82,6 +82,11 @@
                         <div class="tm-nav-link-highlight"></div>
                         <a class="nav-link" href="../Administrador/verMedicamentos.html"> Medicamentos</a>
                         </li>
+        <!--Ver Medicamentos-->              
+        <li class="nav-item active">
+          <div class="tm-nav-link-highlight"></div>
+          <a class="nav-link" href="../Administrador/reportes.html"> Reportes</a>
+          </li>
                       <!--Login-->              
                     <li class="nav-item">
                       <div class="tm-nav-link-highlight"></div>
@@ -129,7 +134,7 @@
                               <label for="avatar">Elija Archivo a Cargar</label>
                             </p>
                             <p>
-                              <input type="file"
+                              <input type="file" 
                                id="carga" name="carga"
                                accept=".csv">
                                <br>
@@ -149,7 +154,7 @@
                         <label for="avatar">Elija Archivo a Cargar</label>
                       </p>
                       <p>
-                        <input type="file"
+                        <input type="file" 
                          id="cargaEnfermera" name="cargaEnfermera"
                          accept=".csv">
                          <br>
@@ -177,7 +182,7 @@
               <input type="text" id="nNombre" placeholder="Nuevo Nombre">
               <input type="text" id="nApellido" placeholder="Nuevo Apellido">
               <input type="date" id="nFecha" placeholder="Nueva Fecha">
-              <select  name="menu" id="nSexo" width=75px class="input">
+              <select  name="menu" id="nSexo" class="custom-select" class="input">
                 <option value="M">Masculino</option>
                 <option value="F">Femenino</option> 
               </select>
@@ -185,7 +190,7 @@
               <input type="text" id="nPassword" placeholder="Nueva Contraseña">
               <input type="text" id="nTel" placeholder="Nuevo Telefono">
               <br>
-              <button class="btn btn btn-success" onclick="modificarPaciente()">Modificar Paciente</button>
+              <button class="btn btn-outline-success" onclick="modificarPaciente()">Modificar Paciente</button>
                                      
           </div>
         </section>

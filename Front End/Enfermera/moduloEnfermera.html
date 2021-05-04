@@ -1,63 +1,194 @@
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>UHospital - Enfermeras</title>
-  <link rel="stylesheet" href="./style_modulo.css">
-  <link rel="stylesheet" href="./style.css"> 
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>UHospital - Enfermero</title>
 
-</head>
-<body>
-<!-- partial:index.partial.html -->
-<html>
-    <head>
-        <meta charset="utf-8">
-        <title>Solicita una Cita</title>
-        <link rel="stylesheet" href="loginstyle.css" type="text/css">
-        <script src="#"></script>
-    </head>
-    <body>
-        <div class="container">
-           
-            <div class="clearfix"></div>
-            <a href="../Login/login.html"><button class="notactive">Regresar</button></a>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" />
+    <link rel="stylesheet" href="../Paciente/partesVer/css/all.min.css" />
+    <link rel="stylesheet" href="../Paciente/partesVer/css/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="../Paciente/partesVer/slick/slick.css"/>    
+    <link rel="stylesheet" type="text/css" href="../Paciente/partesVer/slick/slick-theme.css"/>
+    <link rel="stylesheet" href="../Paciente/partesVer/css/templatemo-style.css" />
+    <link rel="stylesheet" href="../Paciente/partesVer/style.css">
 
-            <p class="g"><span class="ac">Solicita una Cita</span></p>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-            <div class="wrap">
-                <ul class="tabs">
-                    <li><a href="#tab1"><span class="fa fa-home"></span><span class="tab-text">Inicio</span></a></li>
-                    <li><a href="#tab2"><span class="fa fa-group"></span><span class="tab-text">Nosotros</span></a></li>
-                    <li><a href="#tab3"><span class="fa fa-briefcase"></span><span class="tab-text">Servicios</span></a></li>
-                    <li><a href="#tab4"><span class="fa fa-bookmark"></span><span class="tab-text">Blog</span></a></li>
-                </ul>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.5/jspdf.plugin.autotable.min.js"></script>
+   
         
-                <div class="secciones">
-                    <article id="tab1">
-                        <h1>Inicio</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea numquam odio voluptate. Aliquam incidunt similique, et quasi ducimus quos aut autem non dignissimos dicta sit provident, voluptatibus ut blanditiis perspiciatis cum, vel temporibus minima enim. Asperiores omnis placeat officiis a tenetur sit recusandae, reprehenderit neque. Tempora quibusdam, perferendis id ratione culpa dolorum! Nemo, animi? Eveniet eaque perspiciatis, libero quia, pariatur iusto, ipsum porro quod, ut tempora cum quo non illum. Non eligendi incidunt sequi, molestias quia perspiciatis architecto repudiandae quod.</p>
-                    </article>
-                    <article id="tab2">
-                        <h1>Nosotros</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vel voluptates unde, consequuntur aliquid architecto rem numquam expedita minima dolorem pariatur recusandae, eius quod quia aspernatur id impedit, tenetur! Aspernatur incidunt molestiae dolores animi ea praesentium ipsam tenetur voluptas cupiditate perspiciatis eum nihil, natus exercitationem libero earum fuga dignissimos impedit numquam, quasi, placeat officiis voluptates, ad reprehenderit fugiat? Fugiat aperiam et magni, molestiae, numquam consectetur vitae sapiente cupiditate totam laboriosam voluptate obcaecati, aliquam placeat? Suscipit dolores fuga laudantium sed, qui magni iusto dolore quia. Quis fugit exercitationem porro. Rerum nihil omnis recusandae ratione fuga alias eligendi, earum sunt veritatis praesentium eum perspiciatis. Molestias deserunt, iure neque animi quod! Impedit reprehenderit cumque, numquam velit quae cum eius quidem similique laudantium hic deleniti!</p>
-                    </article>
-                    <article id="tab3">
-                        <h1>Servicios</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea numquam odio voluptate. Aliquam incidunt similique, et quasi ducimus quos aut autem non dignissimos dicta sit provident, voluptatibus ut blanditiis perspiciatis cum, vel temporibus minima enim. Asperiores omnis placeat officiis a tenetur sit recusandae, reprehenderit neque. Tempora quibusdam, perferendis id ratione culpa dolorum! Nemo, animi?</p><br>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatum dignissimos at esse, ipsum rerum assumenda nisi obcaecati! Aliquam iure voluptatem incidunt, explicabo sit labore, perferendis eius ad vel quia. Praesentium, doloribus. Quisquam provident nostrum totam itaque debitis, minima, tempore dolores!</p>
-                    </article>
-                    <article id="tab4">
-                        <h1>Blog</h1>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ea numquam odio voluptate. Aliquam incidunt similique, et quasi ducimus quos aut autem non dignissimos dicta sit provident, voluptatibus ut blanditiis perspiciatis cum, vel temporibus minima enim. Asperiores omnis placeat officiis a tenetur sit recusandae, reprehenderit neque. Tempora quibusdam, perferendis id ratione culpa dolorum! Nemo, animi? Eveniet eaque perspiciatis, libero quia, pariatur iusto, ipsum porro quod, ut tempora cum quo non illum. Non eligendi incidunt sequi, molestias quia perspiciatis architecto repudiandae quod.</p><br>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam ipsa ducimus amet at cumque sed numquam, explicabo impedit optio quas iste aperiam quidem ipsam rerum libero voluptatibus perferendis officiis voluptatum!</p>
-                    </article>
+    <!--====== Bootstrap CSS ======-->
+    <link rel="stylesheet" href="../Paciente/partesVer/assets/css/bootstrap.min.css">  
+    
+     
+    <!--====== Style CSS ======-->
+   <link rel="stylesheet" href="../Paciente/partesVer/assets/css/style.css"> 
+
+  </head>
+  <body id="servicesPage">
+    <div class="parallax-window" data-parallax="scroll" data-image-src="img\wgMLUS.jpg">
+      <div class="container-fluid">
+        <div class="row tm-brand-row">
+        <div class="col-lg-4 col-11">
+            <div class="tm-brand-container tm-bg-white-transparent">
+    <!--Logo-->
+            <img class="dib0" src="img\logo2 corte.png" WIDTH=150 HEIGHT=150>
+             </i>
+                <div class="tm-brand-texts">
+                     <h1 class="text-uppercase tm-brand-name">UHospital</h1>
                 </div>
             </div>
         </div>
-                    <!-- End last button -->
-    </body>
-</html>
-<!-- partial -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script><script  src="./script.js"></script>
-</body>
+
+          <div class="col-lg-8 col-1">
+            <div class="tm-nav">
+              <nav class="navbar navbar-expand-lg navbar-light tm-bg-white-transparent tm-navbar">
+                <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-toggle="collapse"
+                  data-target="#navbarNav"
+                  aria-controls="navbarNav"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                  <ul class="navbar-nav">
+        <!--Home-->              
+                     <li class="nav-item active">
+                        <div class="tm-nav-link-highlight"></div>
+                        <a class="nav-link" href="../Index/index.html">Home</a>
+                      </li>
+        
+       
+                      <!--Login-->              
+                    <li class="nav-item">
+                      <div class="tm-nav-link-highlight"></div>
+                     <a class="nav-link" href="../Login/login.html">Login</a>
+                   </li>
+                    </ul>
+                  </div>
+                </nav>
+              </div>
+            </div>
+          </div>
+
+        <!-- Prevencion -->
+        <section class="row" id="tmServices">
+          <div class="col-12">
+            <div class="parallax-window tm-services-parallax-header tm-testimonials-parallax-header"
+                 data-parallax="scroll"
+                 data-z-index="101"
+                 data-image-src="img\banner.jpg">
+
+                 <div class="tm-bg-black-transparent text-center tm-services-header tm-testimonials-header">
+                    <h2 class="text-uppercase tm-services-page-title tm-testimonials-page-title">Modulo de Enfermeros</h2>
+                </div>
+            </div>
+          </div>   
+        </section>
+        <a href="#factura" class="btn btn-outline-warning btn-lg">Factura</a>
+<!--Inicio modulo tab-->
+        <section class="row tm-testimonials-section">
+
+            <div class="wrap">
+               
+                <ul class="tabs">
+                    <li><a href="#tab1"><span class="fas fa-2x fa-diagnoses"></span><span class="tab-text">Citas</span></a></li>
+                    <li><a href="#tab2"><span class="far fa-2x fa-calendar-check"></span><span class="tab-text">Citas Aceptadas</span></a></li>
+                    <li><a href="#tab3"><span class="fas fa-2x fa-user-times"></span><span class="tab-text">Citas Rechazadas</span></a></li>
+                    
+                    
+                  </ul>
+
+                <div class="col-12 tm-carousel">   
+                    <div class="secciones">
+
+                    <div class="tm-bg-black-transparent tm-testimonial-box text-center">  
+                                          
+                        <article id="tab1">
+                            <h1>Citas</h1>
+                            <p>
+                              <div id='tablacitas' class="row"></div>
+                            </p>
+                            <p>
+                              
+                            </p>
+                        </article>
+                    </div>
+    
+                    <article id="tab2">
+                      <h1>Citas Aceptadas</h1>
+                      <div id='tablacitasaceptadas' class="row"></div>
+                  </article>
+                  <article id="tab3">
+                    <h1>Citas Aceptadas</h1>
+                    <div id='tablacitasrechazadas' class="row"></div>
+                </article>
+                 
+
+                    
+
+                    
+
+                    <button type="submit" class="btn btn-outline-info btn-sm" onclick="crearpdf()">Pedido PDF</button>
+                    <button class="btn btn-outline-success btn-sm" onclick="location.reload()">Actualizar</button>
+                    
+
+                    </div>        
+              </div>
+
+
+
+
+            </div>
+
+            <div class="services-content mt-30" id="factura">
+              <h4 class="services-title">Generar Factura</h4>
+              <br>
+              
+              <input type="date" id="fecha" placeholder="Fecha*">
+              <input type="text" id="usuario" placeholder="usuario*">
+              <input type="text" id="doctor" placeholder="Doctor*">
+              <input type="text" id="consulta" placeholder="Precio Consulta*">
+              <input type="text" id="operacion" placeholder="Precio Operacion">
+              <input type="text" id="internado" placeholder="Precio Internado">
+              
+              
+              <br>
+              <button class="btn btn-outline-success" onclick="crearFactura()">Facturar</button>
+              <button type="submit" class="btn btn-outline-info btn-sm" onclick="crearpdf()">Pedido PDF</button>
+                                     
+          </div>
+        </section>
+
+       
+
+        <!-- Creditos -->
+       <footer class="row">
+        <p class="col-12 text-white text-center tm-copyright-text">
+          Copyright &copy; 2021 Saul Barbero. 
+          Designed by <a href="#" class="tm-copyright-link">Saúl Barbero</a>
+        </p>
+      </footer>
+    </div>
+      <!-- .container-fluid -->
+    </div>
+
+    
+    <script src="../pdf.js"></script>
+    <script src="../Enfermera/accionesModuloEnfermera.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/parallax.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="slick/slick.min.js"></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js'></script><script  src="./script.js"></script>
+  </body>
 </html>
