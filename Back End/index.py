@@ -22,6 +22,30 @@ def comprar():
 def obtenerPedido():
     return gestor.obtenerPedido()
 
+#####receta
+@app.route('/receta',methods=['POST'])
+def hacerReceta():
+    dato = request.json
+    gestor.hacerReceta(dato['fecha'], dato['paciente'],dato['padecimiento'],dato['descripcion'],dato['doctor'])
+    return '{"Estado":"Pedido Creado"}'
+
+@app.route('/obtenerReceta')
+def obtenerReceta():
+    return gestor.obtenerReceta()
+
+
+##factura
+@app.route('/obtenerFactura')
+def obtenerFactura():
+    return gestor.obtenerFactura()
+
+@app.route('/factura',methods=['POST'])
+def crearFactura():
+    dato = request.json
+    gestor.crearFactura(dato['fecha'],dato['paciente'],dato['doctor'],dato['consulta'],dato['operacion'], dato['internado'], dato['total'])
+    return '{"Estado":"Factura Creado"}'
+
+
 #EndPoints
 
 @app.route('/',methods = ['GET'])
@@ -68,7 +92,7 @@ def crearMedicamento():
 @app.route('/citas',methods=['POST'])
 def crearCita():
     dato = request.json
-    gestor.crearCita(dato['fecha'],dato['hora'],dato['motivo'],dato['estado'],dato['user'])
+    gestor.crearCita(dato['fecha'],dato['hora'],dato['motivo'],dato['estado'],dato['user'],dato['doctor'])
     return '{"Estado":"Cita Creada"}'
 
 @app.route('/pedido',methods=['POST'])
@@ -126,6 +150,13 @@ def actualizarMedicamento(nombre):
 
     if gestor.actualizarMedicamento(nombre,dato['nombreNuevo'],dato['precioNuevo'],dato['descripcionNuevo'],dato['cantidadNuevo']):
         return '{"data":"Actualizada"}'
+    return '{"data":"Error"}'
+
+@app.route('/citas/<user>',methods=['PUT']) 
+def actualizarCita(user):
+    dato = request.json
+    if gestor.actualizarCita(user,dato['fechaNuevo'],dato['horaNuevo'],dato['motivoNuevo'],dato['estadoNuevo'],dato['userNuevo'],dato['doctorNuevo']):
+        return '{"data":"Actualizada"}' 
     return '{"data":"Error"}'
 
 

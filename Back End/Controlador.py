@@ -2,6 +2,8 @@ from Usuario import Usuario
 from Medicamento import Medicamento
 from Cita import Cita
 from Pedido import Pedido
+from Factura import Factura
+from Receta import Receta
 import json
 import re
 
@@ -11,22 +13,22 @@ class Controlador:
         self.medicamento = []
         self.cita = []
         self.pedido = []  
+        self.factura = []
+        self.receta = []
         
-
-        self.usuario.append(Usuario('paciente','apellido','fecha','M','usuarioPacienteD22','passD','especialidad','tel','Paciente'))
-        self.usuario.append(Usuario('doctor','apellido','fecha','M','usuarioD221','passD','especialidad','tel','Doctor'))
-        
-        self.pedido.append(Pedido('acetaminofen','10','saul123456','1'))
-
-        self.cita.append(Cita('fecha','horas','motivo','Pendiente','user123456'))
-
-        self.usuario.append(Usuario('doctor','apellido','fecha','M','usuarioD2233','passD','especialidad','tel','Enfermera'))
-        self.medicamento.append(Medicamento("Acetaminofen","100","Dolor de cabeza","10"))
- 
-        
+       
         
         self.usuario.append(Usuario('Herbert','Reyes','14/04/2021','M','admin','1234','ninguna','12345678','Administrador'))
 
+
+
+    #Citas
+    def hacerReceta(self,fecha,paciente,padecimiento,descripcion,doctor):
+        self.receta.append(Receta(fecha,paciente,padecimiento,descripcion,doctor))
+    
+    def obtenerReceta(self):
+        return json.dumps([ob.__dict__ for ob in self.receta])
+    
 
     #Comprar
     def comprar(self,nombre,precio,cantidad,user):
@@ -41,6 +43,23 @@ class Controlador:
                 self.pedido.remove(x)
                 return True
         return False
+
+    ######Factura
+    def crearFactura(self,fecha,paciente,doctor,consulta,operacion,internado,total):
+        self.factura.append(Factura(fecha, paciente, doctor, consulta, operacion, internado, total))
+
+    def obtenerFactura(self):
+        return json.dumps([ob.__dict__ for ob in self.factura])
+                  
+
+
+    def inicioSesion(self,user,password):
+        for x in self.usuario:
+            if x.password==password and x.user==user:
+                userActual=user
+                return json.dumps(x.__dict__)   
+        return '{"data":"Usuario no existe"}'
+
     #Create
     def crearPaciente(self,nombre,apellido,fecha,sexo,user,password,especialidad,telefono,tipo):
         self.usuario.append(Usuario(nombre,apellido,fecha,sexo,user,password,'ninguna',telefono,'Paciente'))
@@ -54,11 +73,14 @@ class Controlador:
     def crearMedicamento(self,nombre,precio,descripcion,cantidad):
         self.medicamento.append(Medicamento(nombre,precio,descripcion,cantidad))    
 
-    def crearCita(self,fecha,hora,motivo,estado,user):
-        self.cita.append(Cita(fecha,hora,motivo,'Pendiente',user))
+    def crearCita(self,fecha,hora,motivo,estado,user,doctor):
+        self.cita.append(Cita(fecha,hora,motivo,estado,user,doctor))
         
     def crearPedido(self,nombre,precio,user,cantidad):
         self.pedido.append(Pedido(nombre,precio,user,'1'))
+
+    
+
 
       
     #Read usuarios
@@ -109,10 +131,10 @@ class Controlador:
                 return True
         return False
     
-    def actualizarCita(self,fecha,hora,motivo,estado,user):
-        for x in self.medicamento:
-            if x.nombre==nombre:
-                self.medicamento[self.medicamento.index(x)]=Medicamento(nombreNuevo,precioNuevo,descripcionNuevo,cantidadNuevo)
+    def actualizarCita(self,user,fechaNuevo,horaNuevo,motivoNuevo,estadoNuevo,userNuevo,doctorNuevo):
+        for x in self.cita:
+            if x.user==user:
+                self.cita[self.cita.index(x)]=Cita(fechaNuevo, horaNuevo, motivoNuevo, estadoNuevo, userNuevo, doctorNuevo)
                 return True
         return False
 
