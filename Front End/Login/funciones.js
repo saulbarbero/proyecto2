@@ -3,7 +3,7 @@ let headers = new Headers()
     headers.append('Content-Type', 'application/json');
     headers.append('Accept', 'application/jason');
     headers.append('Access-Control-Allow-Credentials', 'true');
-    headers.append('Access-Control-Allow-Origin', 'http://localhost:5000');
+    headers.append('Access-Control-Allow-Origin', 'http://35.188.161.194:5000');
     headers.append('GET', 'POST', 'OPTIONS','DELETE', 'PUT');
 
 //Funcion registrar usuarios
@@ -27,7 +27,7 @@ function CrearUsuario(){
         return
     }
 
-    fetch(`http://34.121.228.56:5000/registroP`,
+    fetch(`http://35.188.161.194:5000/registroP`,
     {
         method:`POST`,
         headers,
@@ -85,7 +85,7 @@ function InicioSesion(){
     let user = document.getElementById("loginUser");
     let pass = document.getElementById("loginPass");
 
-    fetch(`http://34.121.228.56:5000/login/${user.value}/${pass.value}`)
+    fetch(`http://35.188.161.194:5000/login/${user.value}/${pass.value}`)
     .then(response => response.json())
     .then(data => {
         

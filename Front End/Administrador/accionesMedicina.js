@@ -35,7 +35,7 @@ function convertirdata(medicamento){
 
 function crearpdf(){
   
-  fetch('http://34.121.228.56:5000/obtenerMedicamentos')
+  fetch('http://35.188.161.194:5000/obtenerMedicamentos')
   .then(response => response.json())
   .then(data=>{
       //Declarando los headers
@@ -68,7 +68,7 @@ function crearpdf(){
 let headers = new Headers()
 headers.append('Content-Type', 'application/json');
 headers.append('Accept', 'application/json');
-headers.append('Access-Control-Allow-Origin', 'http://localhost:5000');
+headers.append('Access-Control-Allow-Origin', 'http://35.188.161.194:5000');
 headers.append('Access-Control-Allow-Credentials', 'true');
 headers.append('GET', 'POST', 'OPTIONS','PUT','DELETE');
 
@@ -85,7 +85,7 @@ function cargaMedicamento(){
           }
           actualizarMedicamentoTabla()
           console.log(JSON.stringify(cuerpo))
-          fetch('http://34.121.228.56:5000/cargaMedicamento', {
+          fetch('http://35.188.161.194:5000/cargaMedicamento', {
           method: 'POST',
           headers,
           body: JSON.stringify(cuerpo),
@@ -123,7 +123,7 @@ text2 = `<table class="table" style="margin=10px">
 </thead>
 <tbody>`
 
-fetch('http://34.121.228.56:5000/obtenerMedicamentos')
+fetch('http://35.188.161.194:5000/obtenerMedicamentos')
 .then(response => response.json())
 .then(data =>{
   var i;
@@ -169,7 +169,7 @@ text1 = `<table class="table" style="margin=10px">
 </thead>
 <tbody>`
 
-fetch('http://34.121.228.56:5000/obtenerMedicamentos')
+fetch('http://35.188.161.194:5000/obtenerMedicamentos')
 .then(response => response.json())
 .then(data =>{
   var i;
@@ -207,7 +207,7 @@ function eliminarMedicamento(nombre){
 
   console.log(nombre)
     alert(nombre)
-  fetch('http://34.121.228.56:5000/medicamentos/'+nombre,{
+  fetch('http://35.188.161.194:5000/medicamentos/'+nombre,{
       method:'DELETE'
   }) 
   .then(res => res.text())
@@ -231,7 +231,7 @@ function modificarMedicamento(){
     let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('Accept', 'application/json');
-      headers.append('Access-Control-Allow-Origin', 'http://localhost:5000');
+      headers.append('Access-Control-Allow-Origin', 'http://35.188.161.194:5000');
       headers.append('Access-Control-Allow-Credentials', 'true');
       headers.append('GET', 'POST', 'OPTIONS','PUT','DELETE');
       
@@ -245,7 +245,7 @@ function modificarMedicamento(){
 
     console.log(reque)
     
-    fetch('http://34.121.228.56:5000/medicamentos/'+userOld.value, {
+    fetch('http://35.188.161.194:5000/medicamentos/'+userOld.value, {
       method: 'PUT',
       headers,
       body: reque,

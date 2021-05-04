@@ -49,14 +49,14 @@ function convertirdata(paciente){
     */
 
   }
-
+  
   
 
 
 
 function crearpdf(){
   
-  fetch('http://34.121.228.56:5000/obtenerPacientes')
+  fetch('http://35.188.161.194:5000/obtenerPacientes')
   .then(response => response.json())
   .then(data=>{
       //Declarando los headers
@@ -91,7 +91,7 @@ function crearpdf(){
 let headers = new Headers()
 headers.append('Content-Type', 'application/json');
 headers.append('Accept', 'application/json');
-headers.append('Access-Control-Allow-Origin', 'http://localhost:5000');
+headers.append('Access-Control-Allow-Origin', 'http://35.188.161.194:5000');
 headers.append('Access-Control-Allow-Credentials', 'true');
 headers.append('GET', 'POST', 'OPTIONS','PUT','DELETE');
 
@@ -110,7 +110,7 @@ function cargar(){
           }
           actualizarPacientesTabla()
           console.log(JSON.stringify(cuerpo))
-          fetch('http://34.121.228.56:5000/carga', {
+          fetch('http://35.188.161.194:5000/carga', {
           method: 'POST',
           headers,
           body: JSON.stringify(cuerpo),
@@ -150,7 +150,7 @@ function modificarPaciente(){
     let headers = new Headers();
       headers.append('Content-Type', 'application/json');
       headers.append('Accept', 'application/json');
-      headers.append('Access-Control-Allow-Origin', 'http://localhost:5000');
+      headers.append('Access-Control-Allow-Origin', 'http://35.188.161.194:5000');
       headers.append('Access-Control-Allow-Credentials', 'true');
       headers.append('GET', 'POST', 'OPTIONS','PUT','DELETE');
       
@@ -169,7 +169,7 @@ function modificarPaciente(){
 
     console.log(reque)
     
-    fetch('http://34.121.228.56:5000/pacientes/'+userOld.value, {
+    fetch('http://35.188.161.194:5000/pacientes/'+userOld.value, {
       method: 'PUT',
       headers,
       body: reque,
@@ -214,7 +214,7 @@ function eliminarPaciente(user){
 
   console.log(user)
     alert(user)
-  fetch('http://34.121.228.56:5000/pacientes/'+user,{
+  fetch('http://35.188.161.194:5000/pacientes/'+user,{
       method:'DELETE'
   })
   .then(res => res.text())
@@ -245,7 +245,7 @@ text2 = `<table class="table" style="margin=10px">
 </thead>
 <tbody>`
 
-fetch('http://34.121.228.56:5000/obtenerPacientes')
+fetch('http://35.188.161.194:5000/obtenerPacientes')
 .then(response => response.json())
 .then(data =>{
   var i;
@@ -285,7 +285,7 @@ fetch('http://34.121.228.56:5000/obtenerPacientes')
 //aqui agrego las cartas de los pacientes pero mejor del medicamento
     document.getElementById("cardsc").innerHTML = '';
     let text="";
-    fetch('http://34.121.228.56:5000/obtenerPacientes')
+    fetch('http://35.188.161.194:5000/obtenerPacientes')
     .then(response => response.json())
     .then(data =>{
         var i;
@@ -328,7 +328,7 @@ text8 = `<table class="table" style="margin=10px">
 </thead>
 <tbody>`
 
-fetch('http://34.121.228.56:5000/obtenerPacientes')
+fetch('http://35.188.161.194:5000/obtenerPacientes')
 .then(response => response.json())
 .then(data =>{
   var i;
@@ -374,7 +374,7 @@ fetch('http://34.121.228.56:5000/obtenerPacientes')
 
     document.getElementById("cardsc").innerHTML = '';
     let text="";
-    fetch('http://34.121.228.56:5000/obtenerPacientes')
+    fetch('http://35.188.161.194:5000/obtenerPacientes')
     .then(response => response.json())
     .then(data =>{
         var i;
